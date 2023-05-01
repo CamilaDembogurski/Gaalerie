@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camila Dembogurski">
+    <link rel="icon" href="../../../assets/icons/icon.png">
+    <title>Usuários - Gaalerie</title>
+
+    <!--fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../base.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../../assets/seweetalert2/sweetalert2.css">
+    <link rel="stylesheet" href="./modal-actions.css">
+</head>
+<body>
+    <!--menu-->
+    <header>
+        <nav>
+            <a class="navigation" href=""><img class="logo" src="../../../assets/images/logo.png" alt=""></a>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li class="navigation"><a href="../landingPage/index.html">Home</a></li>
+                <li class="navigation"><a href="../products/products.html">Produtos</a></li>
+                <li class="navigation"><a href="../purchases/purchases.html">Pedidos</a></li>
+                <li class="navigation"><a class="active-page" href="./users.html">Usuários</a></li>
+                <div class="dropdown">
+                    <li class="user-arrow">
+                        <a><img class="user" src="../../../assets/icons/icon-user.svg" alt="">
+                        <div class="arrow" id="arrow" ></div></a>
+                    </li>
+                    <div class="dropdown-inner" id="dropdown-inner"> 
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href=""><img class="edit" src="../../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!--modal remover adm-->
+    <div class="modal-remove-adm" id="modal-remove-adm">
+        <div class="remove">
+            <h1>Remover ADM</h1>
+            <form action="" id="remove-adm" method="post">
+                <div class="need-background">
+                    <span>Código:</span>
+                    <input type="number" id="remove-code" required>
+                </div>
+                <span class="remove-error" id="remove-error-code"></span>
+                <input type="submit" class="remove-btn" value="Remover">
+            </form>
+            <div class="modal-remove-close-btn" id="modal-remove-close-btn" onclick="closeModalRemoveAdm()"></div>
+        </div>
+    </div>
+    <!--modal adicionar adm-->
+    <div class="modal-add-adm" id="modal-add-adm">
+        <div class="add">
+            <h1>Adicionar ADM</h1>
+            <form action="" id="add-adm" method="post">
+                <div class="need-background">
+                    <span>Código:</span>
+                    <input type="number" id="add-code" required>
+                </div>
+                <span class="add-error" id="add-error-code"></span>
+                <input type="submit" class="add-btn" value="Adicionar">
+            </form>
+            <div class="modal-add-close-btn" id="modal-add-close-btn" onclick="closeModalAddAdm()"></div>
+        </div>
+    </div>
+    <!--modal endereço-->
+    <div class="modal-user-address" id="modal-user-address">
+        <div class="modal-address">
+            <h1>Endereço</h1>
+            <div class="address-inf">
+                <div class="need-background">
+                    <span>Nome:</span>
+                    <input type="text" id="name" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Código:</span>
+                    <input type="number" id="code" readonly>
+                </div>
+                <div class="need-background">
+                    <span>País:</span>
+                    <input type="text" id="country" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Estado:</span>
+                    <input type="text" id="state" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Cidade:</span>
+                    <input type="text" id="city" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Bairro:</span>
+                    <input type="text" id="neighborhood" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Rua:</span>
+                    <input type="text" id="street" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Descrição:</span>
+                    <input type="text" id="description" readonly>
+                </div>
+                <div class="need-background">
+                    <span>Número:</span>
+                    <input type="number" id="number" readonly>
+                </div>
+                <button class="address-ok" onclick="closeModalUserAddress()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!--conteúdo-->
+    <main>
+        <div class="btn-users-actions">
+            <button class="add-adm" id="add-adm" onclick="showModalAddAdm()">Adicionar ADM</button>
+            <button class="remove-adm" id="remove-adm" onclick="showModalRemoveAdm()">Remover ADM</button>
+        </div>
+        <div class="content">
+            <div class="users">
+                <div class="user-box">
+                    <div class="img-text">
+                        <div class="title" id="username">camila123</div>
+                        <div class="img" id="img" style="background-image: url(../../../assets/icons/icon-user-purple.svg)"></div>
+                        <div class="text">
+                            <div class="inf" id="code">Código: 001</div>
+                            <div class="inf" id="name">Camila Mayara Dembogurski</div>
+                            <div class="inf" id="email">camilamd@gmail.com</div>
+                            <div class="inf" id="adm">ADM: true</div>
+                        </div>
+                        <button class="btn" onclick="showModalUserAddress()">Endereço</button>
+                    </div>
+                </div>
+
+                <div class="user-box">
+                    <div class="img-text">
+                        <div class="title" id="username">camila123</div>
+                        <div class="img" id="img" style="background-image: url(../../../assets/icons/icon-user-purple.svg)"></div>
+                        <div class="text">
+                            <div class="inf" id="code">Código: 001</div>
+                            <div class="inf" id="name">Camila Mayara Dembogurski</div>
+                            <div class="inf" id="email">camilamd@gmail.com</div>
+                            <div class="inf" id="adm">ADM: true</div>
+                        </div>
+                        <button class="btn" onclick="showModalUserAddress()">Endereço</button>
+                    </div>
+                </div>
+
+                <div class="user-box">
+                    <div class="img-text">
+                        <div class="title" id="username">camila123</div>
+                        <div class="img" id="img" style="background-image: url(../../../assets/icons/icon-user-purple.svg)"></div>
+                        <div class="text">
+                            <div class="inf" id="code">Código: 001</div>
+                            <div class="inf" id="name">Camila Mayara Dembogurski</div>
+                            <div class="inf" id="email">camilamd@gmail.com</div>
+                            <div class="inf" id="adm">ADM: true</div>
+                        </div>
+                        <button class="btn" onclick="showModalUserAddress()">Endereço</button>
+                    </div>
+                </div>
+
+                <div class="user-box">
+                    <div class="img-text">
+                        <div class="title" id="username">camila123</div>
+                        <div class="img" id="img" style="background-image: url(../../../assets/icons/icon-user-purple.svg)"></div>
+                        <div class="text">
+                            <div class="inf" id="code">Código: 001</div>
+                            <div class="inf" id="name">Camila Mayara Dembogurski</div>
+                            <div class="inf" id="email">camilamd@gmail.com</div>
+                            <div class="inf" id="adm">ADM: true</div>
+                        </div>
+                        <button class="btn" onclick="showModalUserAddress()">Endereço</button>
+                    </div>
+                </div>
+                <div class="user-box">
+                    <div class="img-text">
+                        <div class="title" id="username">camila123</div>
+                        <div class="img" id="img" style="background-image: url(../../../assets/icons/icon-user-purple.svg)"></div>
+                        <div class="text">
+                            <div class="inf" id="code">Código: 001</div>
+                            <div class="inf" id="name">Camila Mayara Dembogurski</div>
+                            <div class="inf" id="email">camilamd@gmail.com</div>
+                            <div class="inf" id="adm">ADM: true</div>
+                        </div>
+                        <button class="btn" onclick="showModalUserAddress()">Endereço</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-inf">
+            <img class="footer-logo" src="../../../assets/icons/icon.png" alt="">
+            <p>©2023 Gaalerie</p>
+        </div>
+        <div class="social">
+            <ul class="footer-list">
+                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script src="../../../base.js"></script>
+<script src="../../../assets/seweetalert2/sweetalert2.js"></script>
+<script src="./script.js"></script>
+</html>
