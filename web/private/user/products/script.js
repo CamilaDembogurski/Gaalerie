@@ -1,3 +1,40 @@
+//mostrar e esconder dropdown
+arrow.addEventListener('click', () => {
+    arrow.classList.toggle('clicked')
+    drop.classList.toggle('drop-visible')
+    //toggle: avalia a minha classlist: se no momento da chamada ela já tiver a classe informada na função toggle ele a remove, se não ele a adiciona
+})
+
+//mostrar modal add product
+let modalAddProduct = document.getElementById('modal-add-product')
+function showModalAddProduct(){
+    modalAddProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalAddProduct(){
+    modalAddProduct.style.display = 'none'
+}
+
+//mostrar modal remove product
+let modalRemoveProduct = document.getElementById('modal-remove-product')
+function showModalRemoveProduct(){
+    modalRemoveProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalRemoveProduct(){
+    modalRemoveProduct.style.display = 'none'
+}
+
+//mostrar modal edit product
+let modalEditProduct = document.getElementById('modal-edit-product')
+function showModalEditProduct(){
+    modalEditProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalEditProduct(){
+    modalEditProduct.style.display = 'none'
+}
+
 //fazer logout sem que possa voltar
 function cantGoBack(){
     window.location.replace("../../../public/landingPage/index.html");

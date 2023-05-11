@@ -35,12 +35,164 @@ main{
     width: 100%;
     justify-content: center;
     justify-self: center;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.box-cart{
+    margin: 1.5rem 0;
+    width: 80em;
+    height: 30em;
+    background-color: var(--lightColor);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 10.5rem;
+    right: 9rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1),
+    0 15px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cart{
+    width: 33px;
+}
+
+.cart-title{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    border-bottom: 1px solid #7a64c9;
+}
+
+.cart-title span{
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--purpleColor);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    margin-top: .6rem;
+}
+
+.box-product-cart{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purpleColor) var(--lightColor);
+}
+
+.box-product-cart::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.box-product-cart::-webkit-scrollbar-track {
+    background: var(--lightColor);
+}
+  
+.box-product-cart::-webkit-scrollbar-thumb {
+    background-color: var(--purpleColor);
+    border-radius: 20px;
+    border: none;
+}
+
+.cart-product{
+    font-size: 1.2rem;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    border-bottom: 1px solid rgba(49, 49, 49, 0.3);
+}
+
+.cart-product:first-child{
+    margin-top: 1rem;
+}
+
+.cart-picture{
+    width: 4rem;
+    height: 4rem;
+    border-radius: .5rem;
+    margin: .5rem 3% .5rem .5rem;
+    background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg);
+    background-size: cover;
+}
+
+.cart-name{
+    width: 37%;
+}
+
+.cart-price{
+    width: 35%;
+}
+
+.cart-remove{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.remove-btn{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    border: none;
+    background-color: var(--redColor);
+    background-image: url(../../../assets/icons/icon-delete.svg);
+    background-size: cover;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.remove-btn:hover{
+    background-color: #fff;
+    background-image: url(../../../assets/icons/icon-delete-red.svg);
+}
+
+.final-cart{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    margin-top: 1rem;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.total{
+    margin-left: .5rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.final-btn button{
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: .7rem 1rem;
+    background-color: var(--greenColor);
+    border: none;
+    border-radius: 1.5rem;
+    transition: .3s;
+    color: #fff;
+    cursor: pointer;
+}
+
+.final-btn button:hover{
+    background-color: #029b5d;
 }
 
 .products{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 1rem;
 }
 
 /*produto vertical*/
@@ -313,11 +465,6 @@ main{
     margin-bottom: 6px;
 }
 
-#code,
-#quantity{
-    display: none;
-}
-
 /*botão bloquado*/
 button:disabled{
     background-color: var(--darkColor);
@@ -327,11 +474,29 @@ button:disabled:hover{
     background-color: var(--darkColor);
 }
 
+#code,
+#quantity{
+    display: none;
+}
+
 /*responsividade*/
-@media (max-width: 1520px){
+@media (max-width: 1750px){
     main{
         width: 100%;
     }
+    .content{
+        flex-wrap: wrap;
+    }
+    .box-cart{
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 90%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 1520px){
     .modal-horizontal-content{
         width: 90%;
     }
@@ -343,6 +508,12 @@ button:disabled:hover{
     }
     .modal-square-content{
         height: 70%;
+    }
+    .box-cart{
+        height: 25rem;
+    }
+    .final-cart{
+        margin-top: 2rem;
     }
 }
 
@@ -358,5 +529,30 @@ button:disabled:hover{
 @media (max-width: 660px){
     .modal-vertical-content{
         height: 70%;
+    }
+    .cart-name{
+        width: 30%;
+    }
+    .cart-price{
+        width: 35%;
+    }
+    .cart-remove{
+        width: 15%;
+    }
+}
+
+@media (max-width:590px){
+    .btn-products-actions button{
+        padding: 0.7rem;
+    }
+}
+@media (max-width: 590px){
+    .btn-products-actions button{
+        padding: 0.6rem;
+        width: 11rem;
+    }
+    .final-btn button{
+        font-size: 1rem;
+        padding: .7rem;
     }
 }
