@@ -313,7 +313,8 @@ main{
     margin-bottom: 6px;
 }
 
-#code{
+#code, 
+#available{
     display: none;
 }
 

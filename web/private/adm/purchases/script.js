@@ -133,3 +133,26 @@ divComImagemDeFundo = document.querySelectorAll(".img").forEach(function (event)
       });
     });
 });
+
+
+
+confirmMessage = document.querySelectorAll(".btn").forEach(function (event) {
+  event.addEventListener("click", function () {
+    //event.target pega o elemento que disparou o clique
+    event.target = document.querySelector("#liberated-btn");
+
+      Swal.fire({
+        icon: 'success',
+        iconColor: "#7a64c9",
+        title: 'A compra 001 foi liberada para entrega!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      event.disabled = 'true';
+  });
+});
+
+
+
+

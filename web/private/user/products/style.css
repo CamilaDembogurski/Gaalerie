@@ -475,7 +475,8 @@ button:disabled:hover{
 }
 
 #code,
-#quantity{
+#quantity,
+#available{
     display: none;
 }
 

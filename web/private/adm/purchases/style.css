@@ -137,3 +137,7 @@ main{
 .btn:hover{
     background-color: var(--darkblueColor);
 }
+
+.btn:disabled{
+    background-color: var(--darkColor);
+}
