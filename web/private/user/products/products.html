@@ -43,6 +43,14 @@
         </nav>
     </header>
 
+    <!--modal finalizar compra-->
+    <div class="modal-finalizar-compra" id="modal-finalizar-compra">
+        <div class="box-finalizar">
+            <h1>Finalizar compra</h1>
+            <div class="modal-finalizar-close-btn" id="modal-finalizar-close-btn" onclick="closeModalFinalizarCompra()"></div>
+        </div>
+    </div>
+
     <!--conteúdo-->
     <main>
         <div class="content">
@@ -120,7 +128,7 @@
                 <div class="final-cart">
                     <div class="total">R$ 85632410,00</div>
                     <div class="final-btn">
-                        <button>Finalizar compra</button>
+                        <button onclick="showModalFinalizarCompra()">Finalizar compra</button>
                     </div>
                 </div>
             </div>
