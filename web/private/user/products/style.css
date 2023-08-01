@@ -39,9 +39,9 @@ body{
     background: var(--lightColor);
     align-self: center;
     width: 35rem;
-    height: 25rem;
+    height: 40rem;
     border-radius: 2rem;
-    padding: 3rem 2rem 4rem 2rem;
+    padding: 3rem 2rem 3rem 2rem;
     font-size: 1.4em;
     font-weight: 600;
     color: var(--darkColor);
@@ -50,7 +50,7 @@ body{
 
 .box-finalizar h1{
     align-self: center;
-    padding-bottom: 5rem;
+    padding-bottom: 1rem;
     letter-spacing: 3px;
 }
 
@@ -72,6 +72,57 @@ body{
 
 .modal-finalizar-close-btn:hover{
     background-image: url(../../../assets/icons/icon-close-white.svg);
+}
+
+.finalizar-box{
+    height: 25rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purpleColor) var(--lightColor);
+}
+
+.finalizar-box::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.finalizar-box::-webkit-scrollbar-track {
+    background: var(--lightColor);
+}
+  
+.finalizar-box::-webkit-scrollbar-thumb {
+    background-color: var(--purpleColor);
+    border-radius: 20px;
+    border: none;
+}
+
+.finalizar-total{
+    align-self: center;
+    margin-top: 1.5rem;
+    font-size: 1.3em;
+}
+
+.box-finalizar a{
+    display: contents;
+}
+
+.btn-pagamento{
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: .7rem 1rem;
+    background-color: var(--greenColor);
+    border: none;
+    border-radius: 1.5rem;
+    transition: .3s;
+    color: #fff;
+    cursor: pointer;
+    width: fit-content;
+    align-self: center;
+    margin-top: 2rem;
+}
+
+.btn-pagamento:hover{
+    background-color: #029b5d;
 }
 
 main{

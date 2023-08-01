@@ -39,7 +39,7 @@
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href=""><img class="edit" src="../../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="../account/account.html"><img class="edit" src="../../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
                         <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
@@ -91,13 +91,11 @@
                 <span class="add-error" id="add-error-technique"></span>
                 <div class="need-background">
                     <span>Categoria:</span>
-                    <input list="add-category-list" id="add-category" required autocomplete="off" pattern="Pintura|Escultura|Ilustração|Ilustração Digital">
+                    <input list="add-category-list" id="add-category" required autocomplete="off" pattern="Pintura|Escultura">
                 </div>
                 <datalist id="add-category-list">
                     <option value="Pintura"></option>
                     <option value="Escultura"></option>
-                    <option value="Ilustração"></option>
-                    <option value="Ilustração Digital"></option>
                 </datalist>
                 <span class="add-error" id="add-error-category"></span>
                 <div class="need-background">
@@ -169,13 +167,11 @@
                 <span class="edit-error" id="edit-error-technique"></span>
                 <div class="need-background">
                     <span>Categoria:</span>
-                    <input list="edit-category-list" id="edit-category" autocomplete="off" pattern="Pintura|Escultura|Ilustração|Ilustração Digital">
+                    <input list="edit-category-list" id="edit-category" autocomplete="off" pattern="Pintura|Escultura">
                 </div>
                 <datalist id="edit-category-list">
                     <option value="Pintura"></option>
                     <option value="Escultura"></option>
-                    <option value="Ilustração"></option>
-                    <option value="Ilustração Digital"></option>
                 </datalist>
                 <span class="edit-error" id="edit-error-category"></span>
                 <div class="need-background">
