@@ -43,6 +43,48 @@
         </nav>
     </header>
 
+    <!--modal endereço-->
+    <div class="modal-user-address" id="modal-user-address">
+        <div class="modal-address">
+            <h1>Endereço</h1>
+            <div class="address-inf">
+                <div class="need-background" id="address-code">
+                    <span>Código:</span>
+                    <input type="number" id="code">
+                </div>
+                <div class="need-background">
+                    <span>País:</span>
+                    <input type="text" id="country">
+                </div>
+                <div class="need-background">
+                    <span>Estado:</span>
+                    <input type="text" id="state">
+                </div>
+                <div class="need-background">
+                    <span>Cidade:</span>
+                    <input type="text" id="city">
+                </div>
+                <div class="need-background">
+                    <span>Bairro:</span>
+                    <input type="text" id="neighborhood">
+                </div>
+                <div class="need-background">
+                    <span>Rua:</span>
+                    <input type="text" id="street">
+                </div>
+                <div class="need-background">
+                    <span>Descrição:</span>
+                    <input type="text" id="description">
+                </div>
+                <div class="need-background">
+                    <span>Número:</span>
+                    <input type="number" id="number">
+                </div>
+                <a href="../payment/payment.html"><button class="btn-pagamento" id="btn-pagamento">Realizar pagamento</button></a>
+            </div>
+        </div>
+    </div>
+
     <!--modal finalizar compra-->
     <div class="modal-finalizar-compra" id="modal-finalizar-compra">
         <div class="box-finalizar">
@@ -86,7 +128,7 @@
                 </div>
             </div>
             <div class="finalizar-total" id="finalizar-total">R$ 524863,00</div>
-            <a href="../payment/payment.html"><button class="btn-pagamento" id="btn-pagamento">Efetuar pagamento</button></a>
+            <button class="btn-endereco" id="btn-endereco" onclick="showModalUserAddress()">Continuar</button>
         </div>
     </div>
 

@@ -19,7 +19,97 @@ body{
     display: grid;
 }
 
+/*modal endereço*/
+.modal-user-address{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.modal-address{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    position: relative;
+    background: var(--lightColor);
+    align-self: center;
+    width: 35rem;
+    border-radius: 2rem;
+    padding: 3rem 2rem 2rem 2rem;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--darkColor);
+    letter-spacing: 1px;
+}
+
+.modal-address h1{
+    align-self: center;
+    padding-bottom: 2rem;
+    letter-spacing: 3px;
+}
+
+#address-code{
+    display: none;
+}
+
+.modal-address div{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-address div a{
+    display: flex;
+    align-self: center;
+    text-decoration: none;
+}
+
+.btn-pagamento{
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: .7rem 1rem;
+    background-color: var(--greenColor);
+    border: none;
+    border-radius: 1.5rem;
+    transition: .3s;
+    color: #fff;
+    cursor: pointer;
+    width: fit-content;    
+    margin-top: 2rem;
+}
+
+.btn-pagamento:hover{
+    background-color: #029b5d;
+}
+
 /*modal finalizar compra*/
+.need-background{
+    padding: .5em;
+    background-color: #fff;
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.need-background span{
+    margin-left: 0.7rem;
+}
+
+.need-background input{
+    position: absolute;
+    left: 11rem;
+    font-size: 1.3rem;
+    border: none;
+    outline: none;
+    width: 17rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
 .modal-finalizar-compra{
     z-index: 1;
     position: fixed;
@@ -105,12 +195,12 @@ body{
     display: contents;
 }
 
-.btn-pagamento{
+.btn-endereco{
     font-size: 1.3rem;
     font-weight: 900;
     letter-spacing: 3px;
     padding: .7rem 1rem;
-    background-color: var(--greenColor);
+    background-color: var(--purpleColor);
     border: none;
     border-radius: 1.5rem;
     transition: .3s;
@@ -121,8 +211,8 @@ body{
     margin-top: 2rem;
 }
 
-.btn-pagamento:hover{
-    background-color: #029b5d;
+.btn-endereco:hover{
+    background-color: var(--darkblueColor);
 }
 
 main{
@@ -650,16 +740,14 @@ button:disabled:hover{
 
 @media (max-width:590px){
     .btn-products-actions button{
-        padding: 0.7rem;
-    }
-}
-@media (max-width: 590px){
-    .btn-products-actions button{
         padding: 0.6rem;
         width: 11rem;
     }
     .final-btn button{
         font-size: 1rem;
         padding: .7rem;
+    }
+    .modal-address input{
+        width: 50%;
     }
 }

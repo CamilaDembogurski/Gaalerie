@@ -113,3 +113,10 @@ function showModalFinalizarCompra(){
 function closeModalFinalizarCompra(){
   modalFinalizarCompra.style.display = 'none'
 }
+
+//modal endereço
+let modalEndereco = document.getElementById('modal-user-address')
+function showModalUserAddress(){
+  modalEndereco.style.display = 'flex';
+  modalFinalizarCompra.style.display = 'none';
+}
