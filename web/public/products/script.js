@@ -6,7 +6,7 @@ function message() {
     title: "Oops...",
     html: "<b>Você precisa fazer login para desboquear o acesso!</b><br>",
     confirmButtonBackground: "#2d3272",
-    footer: '<a href="../login/login.html">Fazer login</a>',
+    footer: '<a href="./login">Fazer login</a>',
   });
 }
 

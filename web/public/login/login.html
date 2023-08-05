@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="../public/login/style.css">
 </head>
 <body>
     <div class="login">
@@ -88,9 +88,9 @@
                         <input type="password" placeholder="Confirme sua senha" class="login-input" id="create-confirm-password" required>
                         <div class="eye" id="create-confirm-eye" onclick="eyeCLick('create-confirm-password', 'create-confirm-eye')"></div>
                     </div>
-                    <div class="error-message" id="create-password-error"></div>
+                    <div class="error-message" id="create-password-confirm-error"></div>
 
-                    <input type="submit" class="login-button" value="Cadastrar">
+                    <button id="register" class="login-button" onclick="()=>{}">Cadastrar</button>
 
                     <div>
                         <span class="login-account">Já possui uma conta?</span>
@@ -101,5 +101,5 @@
         </div>
     </div>
 </body>
-<script src="script.js"></script>
+<script src="../public/login/login.js"></script>
 </html>

@@ -219,6 +219,7 @@ img{
     display: none;
 }
 
+
 /*responsividade*/
 @media screen and (min-width: 576px){
     .login-forms{
