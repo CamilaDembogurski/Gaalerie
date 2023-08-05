@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
 
     <link rel="stylesheet" type="text/css" href="../public/login/style.css">
 </head>
+
 <body>
     <div class="login">
         <div class="login-content">
@@ -34,8 +36,10 @@
 
                     <div class="login-box">
                         <img src="../../assets/icons/icon-login-password.svg" class="login-icon-password">
-                        <input type="password" placeholder="Senha" class="login-input" id="registre-password" required autocomplete="off">
-                        <div class="eye" id="registre-eye" onclick="eyeCLick('registre-password', 'registre-eye')"></div>
+                        <input type="password" placeholder="Senha" class="login-input" id="registre-password" required
+                            autocomplete="off">
+                        <div class="eye" id="registre-eye" onclick="eyeCLick('registre-password', 'registre-eye')">
+                        </div>
                     </div>
                     <div class="error-message" id="registre-password-error"></div>
 
@@ -85,8 +89,10 @@
 
                     <div class="login-box">
                         <img src="../../assets/icons/icon-login-password.svg" class="login-icon-password">
-                        <input type="password" placeholder="Confirme sua senha" class="login-input" id="create-confirm-password" required>
-                        <div class="eye" id="create-confirm-eye" onclick="eyeCLick('create-confirm-password', 'create-confirm-eye')"></div>
+                        <input type="password" placeholder="Confirme sua senha" class="login-input"
+                            id="create-confirm-password" required>
+                        <div class="eye" id="create-confirm-eye"
+                            onclick="eyeCLick('create-confirm-password', 'create-confirm-eye')"></div>
                     </div>
                     <div class="error-message" id="create-password-confirm-error"></div>
 
@@ -101,5 +107,7 @@
         </div>
     </div>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../public/login/login.js"></script>
+
 </html>

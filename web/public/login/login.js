@@ -117,8 +117,6 @@ function clearErrorMessage(fields) {
 }
 
 function doRegister(name, username, email, password) {
-    const axios = require('axios');
-
     const user = {
         login: username,
         name: name,
@@ -128,7 +126,7 @@ function doRegister(name, username, email, password) {
 
     axios.post('http://localhost:3000/users', user)
         .then(res => {
-            console.log(`Status: ${ res.status }`);
+            console.log(`Status: ${res.status}`);
             console.log('Body: ', res.data);
         }).catch(err => {
             console.error(err);
