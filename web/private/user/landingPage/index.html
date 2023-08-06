@@ -13,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../base.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../base.css">
+    <link rel="stylesheet" href="./private/user/landingPage/style.css">
 </head>
 <body>
     <div class="preloader" id="preloader">
@@ -23,23 +23,23 @@
     </div>
     <header>
         <nav>
-            <div class="navigation-logo"><img class="logo" src="../../../assets/images/logo.png" alt=""></div>
+            <div class="navigation-logo"><img class="logo" src="../../assets/images/logo.png" alt=""></div>
             <div class="mobile-menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li class="navigation"><a class="active-page" href="./index.html">Home</a></li>
-                <li class="navigation"><a href="../products/products.html">Produtos</a></li>
+                <li class="navigation"><a class="active-page" href="./landingPage">Home</a></li>
+                <li class="navigation"><a href="./private/user/products/products.html">Produtos</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
-                        <a><img class="user" src="../../../assets/icons/icon-user.svg" alt="">
+                        <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="../account/account.html"><img class="edit" src="../../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="./private/user/account/account.html"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
             </ul>
@@ -52,13 +52,13 @@
             <p class="information">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nihil rerum itaque quisquam!
             Natus repudiandae nesciunt tempora odio amet. Saepe?</p>
             <div class="btn">
-                <a href="../products/products.html"><button class="products">Ver produtos</button></a>
-                <a href="../account/account.html"><button class="account">Conta</button></a>
+                <a href="./private/user/products/products.html"><button class="products">Ver produtos</button></a>
+                <a href="./private/user/account/account.html"><button class="account">Conta</button></a>
             </div>
         </section>
 
         <section class="right">
-            <img src="../../../assets/images/principal.png" alt="" 
+            <img src="../../assets/images/principal.png" alt="" 
             class="principal" id="principal" 
             onmouseleave="disableAnimation()" 
             onmouseenter="setAnimation()">
@@ -66,18 +66,18 @@
     </main>
     <footer>
         <div class="footer-inf">
-            <img class="footer-logo" src="../../../assets/icons/icon.png" alt="">
+            <img class="footer-logo" src="../../assets/icons/icon.png" alt="">
             <p>©2023 Gaalerie</p>
         </div>
         <div class="social">
             <ul class="footer-list">
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-facebook.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-instagram.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
             </ul>
         </div>
     </footer>
 </body>
-<script src="../../../base.js"></script>
-<script src="script.js"></script>
+<script src="../../base.js"></script>
+<script src="./private/user/landingPage/script.js"></script>
 </html>

@@ -9,7 +9,8 @@ const publicDirectoryPath = path.join(__dirname, '../web');
 
 // Configurar o Express para servir todos os arquivos estáticos a partir do diretório public
 app.use(express.static(publicDirectoryPath));
-
+// Configurar o middleware para tratar dados de formulário
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Criar uma instância do banco de dados.
@@ -27,10 +28,23 @@ const User = sequelize.define('User', {
 }, {});
 
 // Sincronizar todos os modelos.
-sequelize.sync();
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    await sequelize.sync();
+    console.log('Banco de dados sincronizado.');
+  } catch (error) {
+    console.error('Erro na conexão com o banco de dados:', error);
+  }
+})();
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './public/landingPage/index.html'));
+});
+
+app.get('/landingPage', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/user/landingPage/index.html'));
 });
 
 app.get('/login', (req, res) => {
@@ -67,11 +81,28 @@ app.post('/users', async (req, res) => {
 
 app.get('/users/findall', async (req, res) => {
   try {
-      const users = await User.findAll();
-      res.status(200).json(users);
+    const users = await User.findAll();
+    res.status(200).json(users);
   } catch (error) {
-      console.error(error);
-      res.status(500).send("Erro ao recuperar usuários.");
+    console.error(error);
+    res.status(500).send("Erro ao recuperar usuários.");
+  }
+});
+
+// Rota para o login de usuários
+app.post('/logar', async (req, res) => {
+  const { login, password } = req.body;
+  try {
+    const users = await User.findOne({ where: { login: login, password: password } });
+    if (!users) {
+      return res.status(401).json({ error: 'Credenciais inválidas' });
+    }
+
+    // Caso as credenciais estejam corretas, o login foi bem sucedido
+    res.json({ message: 'Login bem sucedido!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao verificar o usuário', details: error.message });
   }
 });
 

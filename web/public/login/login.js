@@ -4,6 +4,7 @@ const signIn = document.getElementById('sign-in')
 const loginIn = document.getElementById('login-in')
 const loginUp = document.getElementById('login-up')
 const register = document.getElementById('register')
+const doLogin = document.getElementById('doLogin')
 
 signUp.addEventListener('click', () => {
     //remover classe se ela existe
@@ -24,19 +25,37 @@ signIn.addEventListener('click', () => {
     loginIn.classList.add('block')
     loginUp.classList.add('none')
 })
+//Botão login
+doLogin.addEventListener('click', async (event) => {
+    const login = document.getElementById('registre-user').value;
+    const password = document.getElementById('registre-password').value;
+    console.log(login, password)
+    try {
+        const response = await axios.post('http://localhost:3000/logar', { login, password });
+        // Verificar se a propriedade 'data' está definida antes de acessá-la
+        if (response.data) {
+            console.log(response.data.message); // Deve imprimir "Login bem sucedido!"
+            window.location.href = '/landingpage';
+        } else {
+            console.error('Resposta inválida do servidor:', response);
+        }
+    } catch (error) {
+        console.error('Erro ao fazer login:', error.response.data.error);
+    }
+});
 
+//Botão register
 register.addEventListener('click', (event) => {
     let password_create = document.getElementById("create-password")
     let password_confirm = document.getElementById("create-confirm-password")
     let email = document.getElementById("create-email")
     let name = document.getElementById("create-name")
     let username = document.getElementById("create-user")
-    event.preventDefault()
     let fields = ["name", "user", "email", "password", "password-confirm"]
     clearErrorMessage(fields)
     checkRegister(name, username, email, password_create, password_confirm)
 })
-
+//Visualizar senha (arrumar)
 function eyeClick(idInput, idIcon) {
     let password = document.getElementById(idInput)
     let icon = document.getElementById(idIcon)
@@ -60,6 +79,8 @@ function eyeClick(idInput, idIcon) {
     }
 }
 
+
+//Verifica as condições predefinidas do cadastro
 function checkRegister(name, username, email, password_create, password_confirm) {
     let is_valid = true
     if (name.value.length < 3) {
@@ -99,7 +120,7 @@ function checkEmail(email) {
     let pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
     return pattern.test(email)
 }
-
+//Seta o texto para avisar erro
 function callError(field) {
     let error_field = `create-${field}-error`
     let message = "Campo inválido"
@@ -107,7 +128,7 @@ function callError(field) {
     field_div.innerText = message
     console.log(error_field)
 }
-
+//Limpa o erro
 function clearErrorMessage(fields) {
     for (let field of fields) {
         let error_field = `create-${field}-error`
@@ -115,7 +136,7 @@ function clearErrorMessage(fields) {
         field_div.innerText = ""
     }
 }
-
+//Registra o usuário no Sqlite por meio do axios
 function doRegister(name, username, email, password) {
     const user = {
         login: username,

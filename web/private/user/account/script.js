@@ -16,7 +16,7 @@ arrow.addEventListener('click', () => {
 
 //fazer logout sem que possa voltar
 function cantGoBack(){
-  window.location.replace("../../../public/landingPage/index.html");
+  window.location.replace("/");
 }
 
 function eyeCLick(idInput, idIcon){
