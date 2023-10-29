@@ -32,10 +32,15 @@ doLogin.addEventListener('click', async (event) => {
     console.log(login, password)
     try {
         const response = await axios.post('http://localhost:3000/logar', { login, password });
+        console.log(response)
         // Verificar se a propriedade 'data' está definida antes de acessá-la
         if (response.data) {
             console.log(response.data.message); // Deve imprimir "Login bem sucedido!"
+            if(response.data.adm){
+                window.location.href = '/adm';
+            }else{
             window.location.href = '/landingpage';
+            }
         } else {
             console.error('Resposta inválida do servidor:', response);
         }

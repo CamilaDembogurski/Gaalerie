@@ -21,7 +21,7 @@ USE `gaalerie` ;
 -- Table `gaalerie`.`address`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gaalerie`.`address` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTOINCREMENT,
   `country` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `gaalerie`.`user` (
   `mail` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `adm` TINYINT NOT NULL DEFAULT 0,
+  `isAdmin` BOOLEAN NOT NULL DEFAULT 0,
   `address` INT NOT NULL,
   INDEX `address_idx` (`address` ASC) VISIBLE,
   PRIMARY KEY (`username`),
@@ -58,7 +58,7 @@ ENGINE = InnoDB;
 -- Table `gaalerie`.`purchase`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gaalerie`.`purchase` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTOINCREMENT,
   `datetime` DATETIME NOT NULL,
   `total` FLOAT NOT NULL,
   `liberated` TINYINT NOT NULL,
@@ -77,7 +77,7 @@ ENGINE = InnoDB;
 -- Table `gaalerie`.`product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gaalerie`.`product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTOINCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `artist` VARCHAR(150) NOT NULL,
   `price` FLOAT NOT NULL,

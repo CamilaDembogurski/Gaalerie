@@ -1,33 +1,55 @@
 const path = require('path');
 const express = require('express');
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 const app = express();
 const port = 3000;
 
-// Diretório de onde os arquivos estáticos estão servidos
 const publicDirectoryPath = path.join(__dirname, '../web');
 
-// Configurar o Express para servir todos os arquivos estáticos a partir do diretório public
 app.use(express.static(publicDirectoryPath));
-// Configurar o middleware para tratar dados de formulário
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Criar uma instância do banco de dados.
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite'
 });
 
-// Definir um modelo.
-const User = sequelize.define('User', {
+class Address extends Model{} 
+Address.init( {
+  country: DataTypes.STRING,
+  state: DataTypes.STRING,
+  city: DataTypes.STRING,
+  neighborhood: DataTypes.STRING,
+  street: DataTypes.STRING,
+  description: DataTypes.STRING,
+  number: DataTypes.INTEGER
+}, {sequelize, modelName: 'Address'});
+
+class User extends Model{}
+User.init( {
   login: DataTypes.STRING,
   name: DataTypes.STRING,
   email: DataTypes.STRING,
-  password: DataTypes.STRING
+  password: DataTypes.STRING,
+  addressId: {type: Sequelize.INTEGER, references: {model: 'Addresses', key: 'id'}},
+  isAdmin: DataTypes.BOOLEAN
+}, {sequelize, modelName: 'User'});
+
+
+const Product = sequelize.define('Product', {
+  name: DataTypes.STRING,
+  artist: DataTypes.STRING,
+  price: DataTypes.FLOAT,
+  date: DataTypes.DATE,
+  technique: DataTypes.STRING,
+  dimension: DataTypes.STRING,
+  available: DataTypes.BOOLEAN,
+  category: DataTypes.STRING,
+  purchase: DataTypes.INTEGER
 }, {});
 
-// Sincronizar todos os modelos.
+
 (async () => {
   try {
     await sequelize.authenticate();
@@ -55,6 +77,26 @@ app.get('/products', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './public/products/products.html'));
 });
 
+app.get('/adm', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/adm/landingPage/index.html'));
+});
+
+app.get('/admproducts', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/adm/products/products.html'));
+});
+
+app.get('/admaccount', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/adm/account/account.html'));
+});
+
+app.get('/admpurchases', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/adm/purchases/purchases.html'));
+});
+
+app.get('/admusers', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, './private/adm/users/users.html'));
+});
+
 app.post('/users', async (req, res) => {
   const { login, name, email, password } = req.body;
 
@@ -63,12 +105,13 @@ app.post('/users', async (req, res) => {
   }
 
   try {
-    // Cria um novo usuário no banco de dados.
     const user = await User.create({
       login,
       name,
       email,
-      password
+      password,
+      addressId: 1, 
+      isAdmin: false
     });
 
     console.log(user.toJSON());
@@ -89,20 +132,25 @@ app.get('/users/findall', async (req, res) => {
   }
 });
 
-// Rota para o login de usuários
 app.post('/logar', async (req, res) => {
   const { login, password } = req.body;
+  
   try {
-    const users = await User.findOne({ where: { login: login, password: password } });
-    if (!users) {
+    const user = await User.findOne({ where: { login: login, password: password } });
+    if (!user) {
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
-
-    // Caso as credenciais estejam corretas, o login foi bem sucedido
-    res.json({ message: 'Login bem sucedido!' });
-  } catch (error) {
+    console.log(user)
+  
+    if (user.isAdmin) {
+      // Se o usuário for um administrador, redirecionar para a página de administrador
+      return res.status(200).json({message: 'Login bem-sucedido!', adm: true });
+    }
+    res.json({ message: 'Login bem-sucedido!', adm: false });
+  }
+    catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao verificar o usuário', details: error.message });
+    res.status(500).json({ error: 'Erro ao verificar o usuário', detalhes: error.message });
   }
 });
 

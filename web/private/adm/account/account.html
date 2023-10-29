@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Camila Dembogurski">
-    <link rel="icon" href="../../../assets/icons/icon.png">
+    <link rel="icon" href="../../assets/icons/icon.png">
     <title>Conta - Gaalerie</title>
 
     <!--fonte-->
@@ -15,30 +15,30 @@
 
     <link rel="stylesheet" href="./base.css">
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../../assets/seweetalert2/sweetalert2.css">
+    <link rel="stylesheet" href="../../assets/seweetalert2/sweetalert2.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="navigation-logo"><img class="logo" src="../../../assets/images/logo.png" alt=""></div>
+            <div class="navigation-logo"><img class="logo" src="../../assets/images/logo.png" alt=""></div>
             <div class="mobile-menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li class="navigation"><a href="../landingPage/index.html">Home</a></li>
-                <li class="navigation"><a href="../products/products.html">Produtos</a></li>
-                <li class="navigation"><a href="../purchases/purchases.html">Pedidos</a></li>
-                <li class="navigation"><a href="../users/users.html">Usuários</a></li>
+                <li class="navigation"><a href="/adm">Home</a></li>
+                <li class="navigation"><a href="/admproducts">Produtos</a></li>
+                <li class="navigation"><a href="/admpurchases">Pedidos</a></li>
+                <li class="navigation"><a href="/admusers">Usuários</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
-                        <a><img class="user" src="../../../assets/icons/icon-user-purple.svg" alt="">
+                        <a><img class="user" src="../../assets/icons/icon-user-purple.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a class="active-page" href="./account.html"><img class="edit" src="../../../assets/icons/icon-edit-purple.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a class="active-page" href="./account.html"><img class="edit" src="../../assets/icons/icon-edit-purple.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
             </ul>
@@ -51,7 +51,7 @@
                 <h1>Editar informações</h1>
 
                 <div class="form-box">
-                    <img src="../../../assets/icons/icon-login-name.png" class="form-name icon">
+                    <img src="../../assets/icons/icon-login-name.png" class="form-name icon">
                     <input type="text" placeholder="Nome completo" class="form-input" id="edit-name">
                 </div>
                 <div class="error-message" id="form-name-error"></div>
@@ -65,26 +65,26 @@
                 -->
 
                 <div class="form-box">
-                    <img src="../../../assets/icons/icon-login-user.svg" class="form-user icon">
+                    <img src="../../assets/icons/icon-login-user.svg" class="form-user icon">
                     <input type="text" placeholder="Usuário" class="form-input" id="edit-user" readonly>
                 </div>
                 <div class="error-message" id="form-user-error"></div>
 
                 <div class="form-box">
-                    <img src="../../../assets/icons/icon-login-at.png" class="form-at icon">
+                    <img src="../../assets/icons/icon-login-at.png" class="form-at icon">
                     <input type="text" placeholder="Email" class="form-input" id="edit-email">
                 </div>
                 <div class="error-message" id="form-email-error"></div>
 
                 <div class="form-box">
-                    <img src="../../../assets/icons/icon-login-password.svg" class="form-password icon">
+                    <img src="../../assets/icons/icon-login-password.svg" class="form-password icon">
                     <input type="password" placeholder="Senha" class="form-input" id="edit-password">
                     <div class="eye" id="edit-eye" onclick="eyeCLick('edit-password', 'edit-eye')"></div>
                 </div>
                 <div class="error-message" id="edit-password-error"></div>
 
                 <div class="form-box">
-                    <img src="../../../assets/icons/icon-login-password.svg" class="form-confirm-password icon">
+                    <img src="../../assets/icons/icon-login-password.svg" class="form-confirm-password icon">
                     <input type="password" placeholder="Confirme sua senha" class="form-input" id="edit-confirm-password">
                     <div class="eye" id="edit-confirm-eye" onclick="eyeCLick('edit-confirm-password', 'edit-confirm-eye')"></div>
                 </div>
@@ -121,6 +121,6 @@
     </footer>
 </body>
 <script src="../../../base.js"></script>
-<script src="script.js"></script>
+<script src="../private/adm/account/script.js"></script>
 <script src="../../../assets/seweetalert2/sweetalert2.js"></script>
 </html>

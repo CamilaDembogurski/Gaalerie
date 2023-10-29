@@ -13,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../base.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../base.css">
+    <link rel="stylesheet" href="./private/adm/landingPage/style.css">
 </head>
 <body>
     <div class="preloader" id="preloader">
@@ -23,7 +23,7 @@
     </div>
     <header>
         <nav>
-            <div class="navigation-logo"><img class="logo" src="../../../assets/images/logo.png" alt=""></div>
+            <div class="navigation-logo"><img class="logo" src="../../assets/images/logo.png" alt=""></div>
             <div class="mobile-menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -31,17 +31,17 @@
             </div>
             <ul class="nav-list">
                 <li class="navigation"><a class="active-page" href="./index.html">Home</a></li>
-                <li class="navigation"><a href="/products">Produtos</a></li>
-                <li class="navigation"><a href="/purchases">Pedidos</a></li>
-                <li class="navigation"><a href="/users">Usuários</a></li>
+                <li class="navigation"><a href="/admproducts">Produtos</a></li>
+                <li class="navigation"><a href="/admpurchases">Pedidos</a></li>
+                <li class="navigation"><a href="/admusers">Usuários</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
-                        <a><img class="user" src="../../../assets/icons/icon-user.svg" alt="">
+                        <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="../account/account.html"><img class="edit" src="../../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/account/account.html"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
             </ul>
@@ -54,8 +54,8 @@
             <p class="information">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nihil rerum itaque quisquam!
             Natus repudiandae nesciunt tempora odio amet. Saepe?</p>
             <div class="btn">
-                <a href="../products/products.html"><button class="products">Ver produtos</button></a>
-                <a href="../purchases/purchases.html"><button class="purchases">Pedidos</button></a>
+                <a href="/admproducts"><button class="products">Ver produtos</button></a>
+                <a href="/admpurchases"><button class="purchases">Pedidos</button></a>
             </div>
         </section>
 
@@ -73,13 +73,13 @@
         </div>
         <div class="social">
             <ul class="footer-list">
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-facebook.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-instagram.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
             </ul>
         </div>
     </footer>
 </body>
-<script src="../../../base.js"></script>
-<script src="script.js"></script>
+<script src="../base.js"></script>
+<script src="../private/adm/landingPage/script.js"></script>
 </html>
