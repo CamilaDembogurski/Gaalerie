@@ -36,6 +36,12 @@ User.init( {
   isAdmin: DataTypes.BOOLEAN
 }, {sequelize, modelName: 'User'});
 
+class Purchase extends Model{}
+Purchase.init( {
+  total: DataTypes.FLOAT,
+  liberated: DataTypes.BOOLEAN,
+  userId: {type: Sequelize.INTEGER, references: {model: 'Users', key: 'id'}},
+}, {sequelize, modelName: 'Purchase'});
 
 const Product = sequelize.define('Product', {
   name: DataTypes.STRING,
@@ -46,7 +52,7 @@ const Product = sequelize.define('Product', {
   dimension: DataTypes.STRING,
   available: DataTypes.BOOLEAN,
   category: DataTypes.STRING,
-  purchase: DataTypes.INTEGER
+  purchaseId: {type: Sequelize.INTEGER, references: {model: 'Products', key: 'id'}},
 }, {});
 
 
