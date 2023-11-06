@@ -30,15 +30,15 @@
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li class="navigation"><a class="active-page" href="./landingPage">Home</a></li>
-                <li class="navigation"><a href="./private/user/products/products.html">Produtos</a></li>
+                <li class="navigation"><a class="active-page" id="home" href="./landingPage">Home</a></li>
+                <li class="navigation"><a href="/login-products" id="product">Produtos</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
                         <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="./private/user/account/account.html"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/login-account" id="account-2"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
                         <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
@@ -52,8 +52,8 @@
             <p class="information">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nihil rerum itaque quisquam!
             Natus repudiandae nesciunt tempora odio amet. Saepe?</p>
             <div class="btn">
-                <a href="./private/user/products/products.html"><button class="products">Ver produtos</button></a>
-                <a href="./private/user/account/account.html"><button class="account">Conta</button></a>
+                <a href="/login-products"><button class="products" id="product-2">Ver produtos</button></a>
+                <a href="/login-account" id="account"><button class="account">Conta</button></a>
             </div>
         </section>
 
@@ -79,5 +79,6 @@
     </footer>
 </body>
 <script src="../../base.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="./private/user/landingPage/script.js"></script>
 </html>

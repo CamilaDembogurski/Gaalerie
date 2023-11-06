@@ -37,9 +37,9 @@ doLogin.addEventListener('click', async (event) => {
         if (response.data) {
             console.log(response.data.message); // Deve imprimir "Login bem sucedido!"
             if(response.data.adm){
-                window.location.href = '/adm';
+                window.location.href = `/adm?id=${response.data.id}`;
             }else{
-            window.location.href = '/landingpage';
+            window.location.href = `/landingpage?id=${response.data.id}`;
             }
         } else {
             console.error('Resposta inválida do servidor:', response);

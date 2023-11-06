@@ -29,17 +29,17 @@
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li class="navigation"><a href="/adm">Home</a></li>
-                <li class="navigation"><a class="active-page" href="/admproducts">Produtos</a></li>
-                <li class="navigation"><a href="/admpurchases">Pedidos</a></li>
-                <li class="navigation"><a href="/admusers">Usuários</a></li>
+                <li class="navigation"><a href="/adm" id="home">Home</a></li>
+                <li class="navigation"><a class="active-page" href="/adm-products">Produtos</a></li>
+                <li class="navigation"><a href="/adm-purchases" id="purchase">Pedidos</a></li>
+                <li class="navigation"><a href="/adm-users" id="user">Usuários</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
                         <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="../account/account.html"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/adm-account" id="account"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
                         <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <span>Orientação da imagem: </span>
                     <div class="radio-btns">
                         <div>
-                            <input type="radio" name="img-orientatio" value="vertical" required>
+                            <input type="radio" name="img-orientatio" checked value="vertical" required>
                             <span>Vertical</span>
                         </div>
                         <div>
@@ -90,6 +90,11 @@
                 </div>
                 <span class="add-error" id="add-error-technique"></span>
                 <div class="need-background">
+                    <span>Dimensão:</span>
+                    <input type="text" id="add-dimension" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-dimesion"></span>
+                <div class="need-background">
                     <span>Categoria:</span>
                     <input list="add-category-list" id="add-category" required autocomplete="off" pattern="Pintura|Escultura">
                 </div>
@@ -103,7 +108,7 @@
                     <input type="number" id="add-price" required autocomplete="off">
                 </div>
                 <span class="add-error" id="add-error-price"></span>
-                <input type="submit" class="add-btn" value="Adicionar">
+                <input type="submit" class="add-btn" id="add-btn" value="Adicionar">
             </form>
             <div class="modal-add-close-btn" id="modal-add-close-btn" onclick="closeModalAddProduct()"></div>
         </div>
@@ -112,13 +117,13 @@
     <div class="modal-remove-product" id="modal-remove-product">
         <div class="remove">
             <h1>Remover produto</h1>
-            <form action="" id="remove-product" method="post">
+            <form action="" id="remove-product" method="delete">
                 <div class="need-background">
                     <span>Código:</span>
                     <input type="number" id="remove-code" required>
                 </div>
                 <span class="remove-error" id="remove-error-code"></span>
-                <input type="submit" class="remove-btn" value="Remover">
+                <input type="submit" class="remove-btn" id="remove-btn" value="Remover">
             </form>
             <div class="modal-remove-close-btn" id="modal-remove-close-btn" onclick="closeModalRemoveProduct()"></div>
         </div>
@@ -340,5 +345,6 @@
 </body>
 <script src="../base.js"></script>
 <script src="../../assets/seweetalert2/sweetalert2.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../private/adm/products/script.js"></script>
 </html>

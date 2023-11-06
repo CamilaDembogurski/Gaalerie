@@ -1,3 +1,66 @@
+const btnHome = document.getElementById("home");
+const btnUser = document.getElementById("user");
+const btnProducts = document.getElementById("product");
+const btnAccount = document.getElementById("account");
+
+btnHome.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToHome()
+})
+
+btnUser.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToUser()
+})
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnAccount.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount()
+})
+
+
+function redirectToHome(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm?id=${id}`
+  }
+}
+
+function redirectToUser(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-users?id=${id}`
+  }
+}
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-products?id=${id}`
+  }
+}
+
+function redirectToAccount(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-account?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
+
 //mostrar e esconder dropdown
 arrow.addEventListener('click', () => {
     arrow.classList.toggle('clicked')
@@ -37,7 +100,7 @@ function closeModalEditProduct(){
 
 //fazer logout sem que possa voltar
 function cantGoBack(){
-    window.location.replace("../../../public/landingPage/index.html");
+    window.location.replace("/");
 }
 
 //criar modal quando clica na imagem

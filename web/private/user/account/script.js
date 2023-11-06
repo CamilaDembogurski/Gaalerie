@@ -1,3 +1,38 @@
+const btnHome = document.getElementById("home");
+const btnProducts = document.getElementById("product");
+
+btnHome.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToHome()
+})
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+function redirectToHome(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/landingPage?id=${id}`
+  }
+}
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-products?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
 //animação da imagem
 function disableAnimation(){
   document.getElementById('principal').classList.add("disable-animation");

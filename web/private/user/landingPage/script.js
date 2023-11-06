@@ -1,5 +1,51 @@
 //preloader
 var pagePreloader = document.getElementById("preloader");
+const btnProducts = document.getElementById("product");
+const btnProducts2 = document.getElementById("product-2");
+const btnAccount = document.getElementById("account");
+const btnAccount2 = document.getElementById("account-2");
+const btnPayment = document.getElementById("payment");
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnProducts2.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnAccount.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount()
+})
+
+btnAccount2.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount2()
+})
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-products?id=${id}`
+  }
+}
+
+function redirectToAccount(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-account?id=${id}`
+  }
+}
+
+function redirectToAccount2(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-account?id=${id}`
+  }
+}
 
 window.addEventListener("load", function () {
   pagePreloader.classList.add('preloader-fade-out');
@@ -27,4 +73,13 @@ arrow.addEventListener('click', () => {
 //fazer logout sem que possa voltar
 function cantGoBack(){
   window.location.replace("/");
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
 }

@@ -1,3 +1,46 @@
+const btnHome = document.getElementById("home");
+const btnAccount = document.getElementById("account");
+const btnPayment = document.getElementById("payment");
+
+btnHome.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToHome()
+})
+
+btnAccount.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount()
+})
+
+function redirectToHome(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/landingPage?id=${id}`
+  }
+}
+
+function redirectToAccount(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-account?id=${id}`
+  }
+}
+
+function redirectToPayment(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/login-payment?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
 //mostrar e esconder dropdown
 arrow.addEventListener('click', () => {
     arrow.classList.toggle('clicked')

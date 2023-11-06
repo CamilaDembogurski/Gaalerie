@@ -1,3 +1,78 @@
+const btnProducts = document.getElementById("product");
+const btnPurchase = document.getElementById("purchase");
+const btnProducts2 = document.getElementById("product-2");
+const btnPurchase2 = document.getElementById("purchase-2");
+const btnUser = document.getElementById("user");
+const btnAccount = document.getElementById("account");
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnProducts2.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnPurchase.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToPurchase()
+})
+
+btnPurchase2.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToPurchase()
+})
+
+btnUser.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToUser()
+})
+
+
+btnAccount.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount()
+})
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-products?id=${id}`
+  }
+}
+
+function redirectToPurchase(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-purchases?id=${id}`
+  }
+}
+
+function redirectToUser(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-users?id=${id}`
+  }
+}
+
+function redirectToAccount(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-account?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
+
 //preloader
 var pagePreloader = document.getElementById("preloader");
 
@@ -27,5 +102,5 @@ arrow.addEventListener('click', () => {
 
 //fazer logout sem que possa voltar
 function cantGoBack(){
-  window.location.replace("../../../public/landingPage/index.html");
+  window.location.replace("/");
 }

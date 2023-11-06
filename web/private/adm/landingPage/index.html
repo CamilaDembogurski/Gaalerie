@@ -31,16 +31,16 @@
             </div>
             <ul class="nav-list">
                 <li class="navigation"><a class="active-page" href="/adm">Home</a></li>
-                <li class="navigation"><a href="/admproducts">Produtos</a></li>
-                <li class="navigation"><a href="/admpurchases">Pedidos</a></li>
-                <li class="navigation"><a href="/admusers">Usuários</a></li>
+                <li class="navigation"><a href="/adm-products" id="product">Produtos</a></li>
+                <li class="navigation"><a href="/adm-purchases" id="purchase">Pedidos</a></li>
+                <li class="navigation"><a href="/adm-users" id="user">Usuários</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
                         <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
                     <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/admaccount"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
+                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/adm-account" id="account"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
                         <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
                     </div>
                 </div>
@@ -54,13 +54,13 @@
             <p class="information">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nihil rerum itaque quisquam!
             Natus repudiandae nesciunt tempora odio amet. Saepe?</p>
             <div class="btn">
-                <a href="/admproducts"><button class="products">Ver produtos</button></a>
-                <a href="/admpurchases"><button class="purchases">Pedidos</button></a>
+                <a href="/adm-products"><button class="products" id="product-2">Ver produtos</button></a>
+                <a href="/adm-purchases"><button class="purchases" id="purchase-2">Pedidos</button></a>
             </div>
         </section>
 
         <section class="right">
-            <img src="../../../assets/images/principal.png" alt="" 
+            <img src="../../assets/images/principal.png" alt="" 
             class="principal" id="principal" 
             onmouseleave="disableAnimation()" 
             onmouseenter="setAnimation()">
@@ -68,7 +68,7 @@
     </main>
     <footer>
         <div class="footer-inf">
-            <img class="footer-logo" src="../../../assets/icons/icon.png" alt="">
+            <img class="footer-logo" src="../../assets/icons/icon.png" alt="">
             <p>©2023 Gaalerie</p>
         </div>
         <div class="social">
@@ -81,5 +81,6 @@
     </footer>
 </body>
 <script src="../base.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../private/adm/landingPage/script.js"></script>
 </html>

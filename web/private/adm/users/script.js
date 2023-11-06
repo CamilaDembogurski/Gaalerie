@@ -1,3 +1,64 @@
+const btnHome = document.getElementById("home");
+const btnProducts = document.getElementById("product");
+const btnPurchase = document.getElementById("purchase");
+const btnAccount = document.getElementById("account");
+
+btnHome.addEventListener("click", (event) => {
+    event.preventDefault()
+    redirectToHome()
+})
+
+btnProducts.addEventListener("click", (event) => {
+    event.preventDefault()
+    redirectToProduct()
+  })
+
+btnPurchase.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToPurchase()
+}) 
+
+btnAccount.addEventListener("click", (event) => {
+    event.preventDefault()
+    redirectToAccount()
+})
+
+function redirectToHome(){
+    let id = keepId()
+    if(id>0){
+      window.location.href = `/adm?id=${id}`
+    }
+  }
+
+function redirectToProduct(){
+    let id = keepId()
+    if(id>0){
+      window.location.href = `/adm-products?id=${id}`
+    }
+} 
+
+function redirectToPurchase(){
+    let id = keepId()
+    if(id>0){
+      window.location.href = `/adm-purchases?id=${id}`
+    }
+}
+
+function redirectToAccount(){
+    let id = keepId()
+    if(id>0){
+      window.location.href = `/adm-account?id=${id}`
+    }
+}
+
+function keepId(){
+    let id = 0
+    let strId = window.location.search.split("=")
+    if(strId.length>1){
+      id = strId[1]
+    }
+    return id
+  }
 //mostrar e esconder dropdown
 arrow.addEventListener('click', () => {
     arrow.classList.toggle('clicked')
@@ -33,4 +94,8 @@ function showModalUserAddress(){
 //esconder 
 function closeModalUserAddress(){
     modalUserAddress.style.display = 'none'
+}
+
+function cantGoBack(){
+  window.location.replace("/");
 }

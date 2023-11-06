@@ -1,3 +1,65 @@
+const btnHome = document.getElementById("home");
+const btnProducts = document.getElementById("product");
+const btnPurchase = document.getElementById("purchase");
+const btnUser = document.getElementById("user");
+
+btnHome.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToHome()
+})
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnPurchase.addEventListener("click", (event) => {
+event.preventDefault()
+redirectToPurchase()
+}) 
+
+btnUser.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToUser()
+})
+
+function redirectToHome(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm?id=${id}`
+  }
+}
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-products?id=${id}`
+  }
+} 
+
+function redirectToPurchase(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-purchases?id=${id}`
+  }
+}
+
+function redirectToUser(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-users?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
+
 //animação da imagem
 function disableAnimation(){
   document.getElementById('principal').classList.add("disable-animation");
@@ -16,7 +78,7 @@ arrow.addEventListener('click', () => {
 
 //fazer logout sem que possa voltar
 function cantGoBack(){
-  window.location.replace("../../../public/landingPage/index.html");
+  window.location.replace("/");
 }
 
 function eyeCLick(idInput, idIcon){
