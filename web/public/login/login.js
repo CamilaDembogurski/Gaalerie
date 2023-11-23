@@ -60,7 +60,8 @@ register.addEventListener('click', (event) => {
     clearErrorMessage(fields)
     checkRegister(name, username, email, password_create, password_confirm)
 })
-//Visualizar senha (arrumar)
+
+//Visualizar senha
 function eyeClick(idInput, idIcon) {
     let password = document.getElementById(idInput)
     let icon = document.getElementById(idIcon)
