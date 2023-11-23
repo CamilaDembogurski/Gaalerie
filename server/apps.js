@@ -15,7 +15,7 @@ const sequelize = new Sequelize({
   storage: './database.sqlite',
 });
 
-class Address extends Model {}
+class Address extends Model { }
 Address.init(
   {
     country: DataTypes.STRING,
@@ -29,7 +29,7 @@ Address.init(
   { sequelize, modelName: 'Address' }
 );
 
-class User extends Model {}
+class User extends Model { }
 User.init(
   {
     login: DataTypes.STRING,
@@ -42,7 +42,7 @@ User.init(
   { sequelize, modelName: 'User' }
 );
 
-class Purchase extends Model {}
+class Purchase extends Model { }
 Purchase.init(
   {
     total: DataTypes.FLOAT,
@@ -54,6 +54,8 @@ Purchase.init(
 
 const Product = sequelize.define('Product', {
   name: DataTypes.STRING,
+  url: DataTypes.STRING,
+  orientation: DataTypes.STRING,
   artist: DataTypes.STRING,
   price: DataTypes.FLOAT,
   technique: DataTypes.STRING,
@@ -95,6 +97,27 @@ app.get('/login-account', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './private/user/account/account.html'));
 });
 
+app.delete('/login-account/:id', async (req, res) => {
+  try {
+    const response = await User.destroy({ where: { id: req.params.id } })
+    res.status(203).send('Usuário deletado com sucesso');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao deletar usuário.');
+  }
+})
+
+app.get('/login-account/:id', async (req, res) => {
+  try {
+    const response = await User.findOne({ where: { id: req.params.id } })
+    res.status(200).send(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao deletar usuário.');
+  }
+})
+
+
 app.get('/login-payment', (req, res) => {
   console.log(req)
   res.sendFile(path.join(publicDirectoryPath, './private/user/payment/payment.html'));
@@ -107,6 +130,57 @@ app.get('/login-products', (req, res) => {
 
 app.get('/products', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './public/products/products.html'));
+});
+
+app.get('/products/getall', async (req, res) => {
+  try {
+    const products = await Product.findAll();
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao recuperar produtos.');
+  }
+});
+
+app.get('/products/:id', async (req, res) => {
+  try {
+    const response = await Product.findOne({ where: { id: req.params.id } })
+    res.status(200).send(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao procurar produto.');
+  }
+});
+
+app.put('/products/:id', async (req, res) => {
+  let id = req.params.id 
+  const { name, url, technique, dimension, orientation, category, price } = req.body;
+
+  if (!( name && url && technique && dimension && category && orientation && price && id)) {
+    return res.status(400).send('Por favor, forneça todos os campos: name, email');
+  }
+  console.log(id)
+  try {
+    
+    const product = await Product.update(
+      {
+        name: name,
+        url: url,
+        technique: technique,
+        dimension: dimension,
+        orientation: orientation,
+        category: category,
+        price: price,
+      },{
+        where: {id: id}
+      });
+
+    console.log(product);
+    res.status(200).send('Produto editado com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao editar produto.');
+  }
 });
 
 app.get('/adm', (req, res) => {
@@ -127,6 +201,16 @@ app.get('/adm-purchases', (req, res) => {
 
 app.get('/adm-users', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './private/adm/users/users.html'));
+});
+
+app.get('/addresses/:id', async (req, res) => {
+  try {
+    const response = await Address.findOne({ where: { id: req.params.id } })
+    res.status(200).send(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao procurar endereço.');
+  }
 });
 
 app.post('/users', async (req, res) => {
@@ -154,6 +238,70 @@ app.post('/users', async (req, res) => {
   }
 });
 
+app.put('/users/:id', async (req, res) => {
+  let id = req.params.id 
+  const { name, email } = req.body;
+
+  if (!( name && email && id)) {
+    return res.status(400).send('Por favor, forneça todos os campos: name, email');
+  }
+  console.log(id)
+  try {
+    
+    const user = await User.update(
+      {
+        name: name,
+        email: email,
+      },{
+        where: {id: id}
+      });
+
+    console.log(user);
+    res.status(200).send('Usuário editado com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao editar usuário.');
+  }
+});
+
+app.patch('/users/:id', async (req, res) => {
+  let id = req.params.id 
+  try {
+    
+    const user = await User.update(
+      {
+       isAdmin: true
+      },{
+        where: {id: id}
+      });
+
+    console.log(user);
+    res.status(200).send('Usuário virou adm!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao virar adm.');
+  }
+});
+
+app.delete('/adm-users/:id', async (req, res) => {
+  let id = req.params.id 
+  try {
+    
+    const user = await User.update(
+      {
+       isAdmin: false
+      },{
+        where: {id: id}
+      });
+
+    console.log(user);
+    res.status(200).send('Usuário desvirou adm!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao virar adm.');
+  }
+});
+
 app.post('/admproducts', async (req, res) => {
   const { name, url, artist, technique, orientation, dimension, category, price } = req.body;
   try {
@@ -166,7 +314,7 @@ app.post('/admproducts', async (req, res) => {
       dimension,
       category,
       price,
-      available: true, 
+      available: true,
     });
 
     console.log(product.toJSON());
@@ -177,17 +325,16 @@ app.post('/admproducts', async (req, res) => {
   }
 });
 
-app.delete('/admproducts/:id', async(req, res) => {
-  try{
-    const response = await Product.destroy({where:{id:req.params.id}})
+app.delete('/admproducts/:id', async (req, res) => {
+  try {
+    const response = await Product.destroy({ where: { id: req.params.id } })
     res.status(203).send('Produto deletado com sucesso');
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao deletar produto.');
   }
-
-  
 })
+
 app.get('/users/findall', async (req, res) => {
   try {
     const users = await User.findAll();
@@ -210,9 +357,9 @@ app.post('/logar', async (req, res) => {
 
     if (user.isAdmin) {
       // Se o usuário for um administrador, redirecionar para a página de administrador
-      return res.status(200).json({ message: 'Login bem-sucedido!', adm: true, id:user.id });
+      return res.status(200).json({ message: 'Login bem-sucedido!', adm: true, id: user.id });
     }
-    res.json({ message: 'Login bem-sucedido!', adm: false, id:user.id });
+    res.json({ message: 'Login bem-sucedido!', adm: false, id: user.id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao verificar o usuário', detalhes: error.message });

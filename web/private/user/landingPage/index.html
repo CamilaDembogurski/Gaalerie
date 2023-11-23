@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="../../base.css">
     <link rel="stylesheet" href="./private/user/landingPage/style.css">
 </head>
+
 <body>
     <div class="preloader" id="preloader">
         <div class="ring"></div>
@@ -30,16 +32,26 @@
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li class="navigation"><a class="active-page" id="home" href="./landingPage">Home</a></li>
+                <li class="navigation"><a class="active-page" id="home">Home</a></li>
                 <li class="navigation"><a href="/login-products" id="product">Produtos</a></li>
                 <div class="dropdown">
                     <li class="user-arrow">
                         <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
-                        <div class="arrow" id="arrow" ></div></a>
+                            <div class="arrow" id="arrow"></div>
+                        </a>
                     </li>
-                    <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/login-account" id="account-2"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                    <div class="dropdown-inner" id="dropdown-inner">
+                        <div class="dropdown-div">
+                            <a href="/login-account" id="account-2"><img class="edit"
+                                    src="../../assets/icons/icon-edit.svg" alt="">Editar conta
+                                <div class="icon-drop-inner">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-div" onclick="cantGoBack()">
+                            <div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg"
+                                    alt=""></div>Logout
+                        </div>
                     </div>
                 </div>
             </ul>
@@ -48,9 +60,10 @@
     <!--conteúdo-->
     <main>
         <section class="left">
-            <p class="title">Lorem</p>
-            <p class="information">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nihil rerum itaque quisquam!
-            Natus repudiandae nesciunt tempora odio amet. Saepe?</p>
+            <p class="title">Bem vindo…</p>
+            <p class="information">Aqui na Gaalerie você é convidado a explorar e apreciar as mais diversas obras do nosso acervo. 
+                <br>
+                E se você for um artista, entre em contato conosco para vender e divulgar seu trabalho!</p>
             <div class="btn">
                 <a href="/login-products"><button class="products" id="product-2">Ver produtos</button></a>
                 <a href="/login-account" id="account"><button class="account">Conta</button></a>
@@ -58,10 +71,8 @@
         </section>
 
         <section class="right">
-            <img src="../../assets/images/principal.png" alt="" 
-            class="principal" id="principal" 
-            onmouseleave="disableAnimation()" 
-            onmouseenter="setAnimation()">
+            <img src="../../assets/images/principal.png" alt="" class="principal" id="principal"
+                onmouseleave="disableAnimation()" onmouseenter="setAnimation()">
         </section>
     </main>
     <footer>
@@ -81,4 +92,5 @@
 <script src="../../base.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="./private/user/landingPage/script.js"></script>
+
 </html>

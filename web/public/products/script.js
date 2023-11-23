@@ -10,6 +10,118 @@ function message() {
   });
 }
 
+function getProduct(id){
+  axios.get(`http://localhost:3000/products/${id}`).then((res) => {
+  document.getElementById(res.data.orientation).checked = true
+  fieldName.value = res.data.name
+  fieldUrl.value = res.data.url
+  fieldArtist.value = res.data.artist
+  fieldTechnique.value = res.data.technique
+  fieldDimension.value = res.data.dimension
+  fieldCategory.value = res.data.category
+  fieldPrice.value = res.data.price
+  productId = id 
+  })
+}
+
+function getAllProducts(){
+  axios.get(`http://localhost:3000/products/getall`)
+  .then(res => {
+    let products = res.data;
+    documentMap(products)
+    console.log(res);
+  }).catch(err => {
+    console.error(err);
+  })
+}
+
+function documentMap(products){
+  let displayProducts = document.getElementById("display-products")
+  for(let product of products){
+    let newProduct = document.createElement("div")
+    newProduct.classList.add(product.orientation)
+    let newImgTxt = document.createElement("div")
+    newImgTxt.classList.add(`img-text-${product.orientation}`)
+    let newImg = document.createElement("div")
+    newImg.classList.add("img")
+    newImg.style.backgroundImage = `url(${product.url})`
+    let newTxtGeneral = document.createElement("div")
+    newTxtGeneral.classList.add(`text-general-${product.orientation}`)
+    let newTxt = document.createElement("div")
+    newTxt.classList.add(`text-${product.orientation}`)
+    let newTitle = document.createElement("div")
+    newTitle.classList.add(`title-${product.orientation}`)
+    newTitle.innerText = product.name
+    let newCode = document.createElement("div")
+    newCode.classList.add("inf")
+    newCode.innerText = `Código: ${product.id}`
+    let newCategory = document.createElement("div")
+    newCategory.classList.add("inf")
+    newCategory.innerText = product.category
+    let newAuthor = document.createElement("div")
+    newAuthor.classList.add("inf")
+    newAuthor.innerText = `Artista: ${product.artist}`
+    let newDate = document.createElement("div")
+    newDate.classList.add("inf")
+    newDate.innerText = `Data: ${product.createdAt.split("T")[0]}`
+    let newTechnique = document.createElement("div")
+    newTechnique.classList.add("inf")
+    newTechnique.innerText = `Técnica: ${product.technique}`
+    let newDimension = document.createElement("div")
+    newDimension.classList.add("inf")
+    newDimension.innerText = `Dimensão: ${product.dimension}`
+    let newAvailable = document.createElement("div")
+    newAvailable.classList.add("inf")
+    newAvailable.innerText = `Disponível: ${product.available}`
+    let newBtn = document.createElement("button")
+    newBtn.innerText = "Adicionar ao carrinho"
+    newBtn.classList.add(`${product.orientation}-cart-btn`)
+    let newBtnPrice = document.createElement("div")
+    newBtnPrice.classList.add(`btn-price-${product.orientation}`)
+    newBtn.addEventListener("click", (event) => {
+      message()
+    })
+    let newPrice = document.createElement("div")
+    newPrice.classList.add(`${product.orientation}-price`)
+    newPrice.innerText = `R$ ${product.price}`
+
+    if(product.orientation == "vertical"){
+      newTxt.appendChild(newTitle)
+    }
+
+    newTxt.appendChild(newCategory)
+    newTxt.appendChild(newAuthor)
+    newTxt.appendChild(newDate)
+    newTxt.appendChild(newTechnique)
+    newTxt.appendChild(newDimension)
+
+    newTxtGeneral.appendChild(newTxt)
+    if(product.orientation == "verical"){
+      newTxtGeneral.appendChild(newBtn)
+      newTxtGeneral.appendChild(newPrice)
+    }else{
+      newBtnPrice.appendChild(newBtn)
+      newBtnPrice.appendChild(newPrice)
+      newTxtGeneral.appendChild(newBtnPrice)
+    }
+  
+
+    if(product.orientation == "vertical"){
+      newImgTxt.appendChild(newImg)
+      newImgTxt.appendChild(newTxtGeneral)
+    }else{
+      newImgTxt.appendChild(newTitle)
+      newImgTxt.appendChild(newImg) 
+      newImgTxt.appendChild(newTxtGeneral)
+    }
+
+    newProduct.appendChild(newImgTxt)
+    displayProducts.appendChild(newProduct)
+  }
+}
+
+
+
 //criar modal quando clica na imagem
 divComImagemDeFundo = document.querySelectorAll(".img").forEach(function (event) {
     event.addEventListener("click", function () {
@@ -104,3 +216,5 @@ divComImagemDeFundo = document.querySelectorAll(".img").forEach(function (event)
       });
     });
 });
+
+getAllProducts()

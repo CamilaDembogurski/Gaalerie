@@ -21,9 +21,10 @@ btnAccount.addEventListener("click", (event) => {
   redirectToAccount()
 })
 
+
 btnAccount2.addEventListener("click", (event) => {
   event.preventDefault()
-  redirectToAccount2()
+  redirectToAccount()
 })
 
 function redirectToProduct(){
@@ -34,13 +35,6 @@ function redirectToProduct(){
 }
 
 function redirectToAccount(){
-  let id = keepId()
-  if(id>0){
-    window.location.href = `/login-account?id=${id}`
-  }
-}
-
-function redirectToAccount2(){
   let id = keepId()
   if(id>0){
     window.location.href = `/login-account?id=${id}`

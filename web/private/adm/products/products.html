@@ -38,9 +38,18 @@
                         <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
                         <div class="arrow" id="arrow" ></div></a>
                     </li>
-                    <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/adm-account" id="account"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                    <div class="dropdown-inner" id="dropdown-inner">
+                        <div class="dropdown-div">
+                            <a href="/adm-account" id="account"><img class="edit"
+                                    src="../../assets/icons/icon-edit.svg" alt="">Editar conta
+                                <div class="icon-drop-inner">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-div" onclick="cantGoBack()">
+                            <div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg"
+                                    alt=""></div>Logout
+                        </div>
                     </div>
                 </div>
             </ul>
@@ -137,15 +146,15 @@
                     <span>Orientação da imagem: </span>
                     <div class="radio-btns">
                         <div>
-                            <input type="radio" name="img-orientation" value="vertical">
+                            <input type="radio" name="img-orientation" id="vertical" value="vertical">
                             <span>Vertical</span>
                         </div>
                         <div>
-                            <input type="radio" name="img-orientation" value="horizontal">
+                            <input type="radio" name="img-orientation" id="horizontal" value="horizontal">
                             <span>Horizontal</span>
                         </div>
                         <div>
-                            <input type="radio" name="img-orientation" value="square">
+                            <input type="radio" name="img-orientation" id="square" value="square">
                             <span>Quadrada</span>
                         </div>
                     </div>
@@ -171,6 +180,11 @@
                 </div>
                 <span class="edit-error" id="edit-error-technique"></span>
                 <div class="need-background">
+                    <span>Dimensão:</span>
+                    <input type="text" id="edit-dimension" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-technique"></span>
+                <div class="need-background">
                     <span>Categoria:</span>
                     <input list="edit-category-list" id="edit-category" autocomplete="off" pattern="Pintura|Escultura">
                 </div>
@@ -184,7 +198,7 @@
                     <input type="number" id="edit-price" autocomplete="off">
                 </div>
                 <span class="edit-error" id="edit-error-price"></span>
-                <input type="submit" class="edit-btn" value="Adicionar">
+                <input type="submit" class="edit-btn" id="edit-btn" value="Editar">
             </form>
             <div class="modal-edit-close-btn" id="modal-edit-close-btn" onclick="closeModalEditProduct()"></div>
         </div>
@@ -197,8 +211,8 @@
             <button class="remove-product" id="remove-product" onclick="showModalRemoveProduct()">Remover produto</button>
         </div>
         <div class="content">
-            <div class="products">
-                <!--produto vertical-->
+            <div class="products" id="display-products">
+            <!--
                 <div class="vertical">
                     <div class="img-text-vertical">
                         <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
@@ -218,7 +232,7 @@
                         </div>
                     </div>
                 </div>
-                <!--produto horizontal-->
+               
                 <div class="horizontal">
                     <div class="img-text-horizontal">
                         <div class="title-horizontal" id="title">Guernica</div>
@@ -240,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-                <!--produto quadrado-->
+              
                 <div class="square">
                     <div class="img-text-square">
                         <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
@@ -262,7 +276,7 @@
                         </div>
                     </div>
                 </div>
-                <!--produto vertical-->
+                
                 <div class="vertical">
                     <div class="img-text-vertical">
                         <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
@@ -282,7 +296,7 @@
                         </div>
                     </div>
                 </div>
-                <!--produto horizontal-->
+                
                 <div class="horizontal">
                     <div class="img-text-horizontal">
                         <div class="title-horizontal" id="title">Guernica</div>
@@ -304,7 +318,7 @@
                         </div>
                     </div>
                 </div>
-                <!--produto quadrado-->
+               
                 <div class="square">
                     <div class="img-text-square">
                         <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
@@ -326,6 +340,7 @@
                         </div>
                     </div>
                 </div>
+                --> 
             </div>
         </div>
     </main>

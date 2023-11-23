@@ -5,6 +5,16 @@ const btnHome = document.getElementById("home");
 const btnPurchase = document.getElementById("purchase");
 const btnUser = document.getElementById("user");
 const btnAccount = document.getElementById("account");
+const btnEdit = document.getElementById("edit-btn");
+
+const fieldName = document.getElementById("edit-name");
+const fieldUrl = document.getElementById("edit-url");
+const fieldArtist = document.getElementById("edit-artist");
+const fieldTechnique = document.getElementById("edit-technique");
+const fieldDimension = document.getElementById("edit-dimension");
+const fieldCategory = document.getElementById("edit-category");
+const fieldPrice = document.getElementById("edit-price");
+let userId
 
 btnHome.addEventListener("click", (event) => {
   event.preventDefault()
@@ -92,9 +102,11 @@ function closeModalRemoveProduct() {
 }
 
 //mostrar modal edit product
-function showModalEditProduct() {
+function showModalEditProduct(id) {
   let modalEditProduct = document.getElementById('modal-edit-product')
   modalEditProduct.style.display = 'flex'
+  getProduct(id)
+  
 }
 //esconder 
 function closeModalEditProduct() {
@@ -122,6 +134,7 @@ addBtn.addEventListener('click', (event) => {
   createProduct(name, url, artist, technique, orientation, dimension, category, price)
 })
 
+//função para requisitar a criação do produto no express
 function createProduct(name, url, artist, technique, orientation, dimension, category, price) {
   const product = {
     name: name,
@@ -133,6 +146,7 @@ function createProduct(name, url, artist, technique, orientation, dimension, cat
     category: category,
     price: price,
   };
+
   console.log(product)
   axios.post('http://localhost:3000/admproducts', product)
     .then(res => {
@@ -144,12 +158,15 @@ function createProduct(name, url, artist, technique, orientation, dimension, cat
     });
 }
 
+//click event para chamar as funções de remover
 rmvBtn.addEventListener('click', (event) => {
   event.preventDefault()
   let rmvId = document.getElementById('remove-code').value
   deleteProduct(rmvId)
 })
 
+
+//função para requisistar a exclusão de um produto no express
 function deleteProduct(id){
   console.log(id)
   axios.delete(`http://localhost:3000/admproducts/${id}`)
@@ -159,6 +176,153 @@ function deleteProduct(id){
   }).catch(err => {
     console.error(err);
   });
+}
+
+//função para puxar os produtos pelo ID
+function getProduct(id){
+  axios.get(`http://localhost:3000/products/${id}`).then((res) => {
+  document.getElementById(res.data.orientation).checked = true
+  fieldName.value = res.data.name
+  fieldUrl.value = res.data.url
+  fieldArtist.value = res.data.artist
+  fieldTechnique.value = res.data.technique
+  fieldDimension.value = res.data.dimension
+  fieldCategory.value = res.data.category
+  fieldPrice.value = res.data.price
+  productId = id 
+  })
+}
+
+//função para requisistar a edição
+function doEdit(name, url, artist, technique, dimension, orientation, category, price, id) {
+  const product = {
+    name: name,
+    url: url,
+    artist: artist,
+    technique: technique,
+    orientation: orientation,
+    dimension: dimension,
+    category: category,
+    price: price,
+  };
+
+  axios.put(`http://localhost:3000/products/${id}`, product)
+    .then(res => {
+      console.log(`Status: ${res.status}`);
+      console.log('Body: ', res.data);
+      closeModalEditProduct();
+    }).catch(err => {
+      console.error(err);
+    });
+}
+
+
+//click event para chamar as funções de editar
+btnEdit.addEventListener("click", (event) => {
+  event.preventDefault()
+  let orientation = document.querySelector('input[name="img-orientation"]:checked').value
+  doEdit(fieldName.value, fieldUrl.value, fieldArtist.value, fieldTechnique.value, fieldDimension.value, orientation, fieldCategory.value, fieldPrice.value, productId)
+  
+})
+
+function getAllProducts(){
+  axios.get(`http://localhost:3000/products/getall`)
+  .then(res => {
+    let products = res.data;
+    documentMap(products)
+    console.log(res);
+  }).catch(err => {
+    console.error(err);
+  })
+}
+
+
+//função para mapear os css's e colocar em ordem para a visualização no site
+function documentMap(products){
+  let displayProducts = document.getElementById("display-products")
+  for(let product of products){
+    let newProduct = document.createElement("div")
+    newProduct.classList.add(product.orientation)
+    let newImgTxt = document.createElement("div")
+    newImgTxt.classList.add(`img-text-${product.orientation}`)
+    let newImg = document.createElement("div")
+    newImg.classList.add("img")
+    newImg.style.backgroundImage = `url(${product.url})`
+    let newTxtGeneral = document.createElement("div")
+    newTxtGeneral.classList.add(`text-general-${product.orientation}`)
+    let newTxt = document.createElement("div")
+    newTxt.classList.add(`text-${product.orientation}`)
+    let newTitle = document.createElement("div")
+    newTitle.classList.add(`title-${product.orientation}`)
+    newTitle.innerText = product.name
+    let newCode = document.createElement("div")
+    newCode.classList.add("inf")
+    newCode.innerText = `Código: ${product.id}`
+    let newCategory = document.createElement("div")
+    newCategory.classList.add("inf")
+    newCategory.innerText = product.category
+    let newAuthor = document.createElement("div")
+    newAuthor.classList.add("inf")
+    newAuthor.innerText = `Artista: ${product.artist}`
+    let newDate = document.createElement("div")
+    newDate.classList.add("inf")
+    newDate.innerText = `Data: ${product.createdAt.split("T")[0]}`
+    let newTechnique = document.createElement("div")
+    newTechnique.classList.add("inf")
+    newTechnique.innerText = `Técnica: ${product.technique}`
+    let newDimension = document.createElement("div")
+    newDimension.classList.add("inf")
+    newDimension.innerText = `Dimensão: ${product.dimension}`
+    let newAvailable = document.createElement("div")
+    newAvailable.classList.add("inf")
+    newAvailable.innerText = `Disponível: ${product.available}`
+    let newBtn = document.createElement("button")
+    newBtn.innerText = "Editar Informações"
+    newBtn.classList.add(`${product.orientation}-cart-btn`)
+    let newBtnPrice = document.createElement("div")
+    newBtnPrice.classList.add(`btn-price-${product.orientation}`)
+    newBtn.addEventListener("click", (event) => {
+      showModalEditProduct(product.id)
+    })
+    let newPrice = document.createElement("div")
+    newPrice.classList.add(`${product.orientation}-price`)
+    newPrice.innerText = `R$ ${product.price}`
+
+    if(product.orientation == "vertical"){
+      newTxt.appendChild(newTitle)
+    }
+
+    newTxt.appendChild(newCode)
+    newTxt.appendChild(newCategory)
+    newTxt.appendChild(newAuthor)
+    newTxt.appendChild(newDate)
+    newTxt.appendChild(newTechnique)
+    newTxt.appendChild(newDimension)
+    newTxt.appendChild(newAvailable)
+
+    newTxtGeneral.appendChild(newTxt)
+    if(product.orientation == "verical"){
+      newTxtGeneral.appendChild(newBtn)
+      newTxtGeneral.appendChild(newPrice)
+    }else{
+      newBtnPrice.appendChild(newBtn)
+      newBtnPrice.appendChild(newPrice)
+      newTxtGeneral.appendChild(newBtnPrice)
+    }
+  
+
+    if(product.orientation == "vertical"){
+      newImgTxt.appendChild(newImg)
+      newImgTxt.appendChild(newTxtGeneral)
+    }else{
+      newImgTxt.appendChild(newTitle)
+      newImgTxt.appendChild(newImg) 
+      newImgTxt.appendChild(newTxtGeneral)
+    }
+
+    newProduct.appendChild(newImgTxt)
+    displayProducts.appendChild(newProduct)
+  }
 }
 
 //criar modal quando clica na imagem
@@ -254,3 +418,5 @@ divComImagemDeFundo = document.querySelectorAll(".img").forEach(function (event)
     });
   });
 });
+
+getAllProducts()

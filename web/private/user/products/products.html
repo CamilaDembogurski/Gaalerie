@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="../../base.css">
     <link rel="stylesheet" href="./private/user/products/style.css">
 </head>
+
 <body>
     <!--menu-->
     <header>
@@ -32,11 +34,21 @@
                 <div class="dropdown">
                     <li class="user-arrow">
                         <a><img class="user" src="../../../assets/icons/icon-user.svg" alt="">
-                        <div class="arrow" id="arrow" ></div></a>
+                            <div class="arrow" id="arrow"></div>
+                        </a>
                     </li>
-                    <div class="dropdown-inner" id="dropdown-inner"> 
-                        <div class="dropdown-div"><div class="icon-drop-inner"><a href="/login-account" id="account"><img class="edit" src="../../assets/icons/icon-edit.svg" alt=""></div>Editar conta</a></div>
-                        <div class="dropdown-div" onclick="cantGoBack()"><div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg" alt=""></div>Logout</div>
+                    <div class="dropdown-inner" id="dropdown-inner">
+                        <div class="dropdown-div">
+                            <a href="/login-account" id="account"><img class="edit"
+                                    src="../../assets/icons/icon-edit.svg" alt="">Editar conta
+                                <div class="icon-drop-inner">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-div" onclick="cantGoBack()">
+                            <div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg"
+                                    alt=""></div>Logout
+                        </div>
                     </div>
                 </div>
             </ul>
@@ -89,7 +101,8 @@
     <div class="modal-finalizar-compra" id="modal-finalizar-compra">
         <div class="box-finalizar">
             <h1>Finalizar compra</h1>
-            <div class="modal-finalizar-close-btn" id="modal-finalizar-close-btn" onclick="closeModalFinalizarCompra()"></div>
+            <div class="modal-finalizar-close-btn" id="modal-finalizar-close-btn" onclick="closeModalFinalizarCompra()">
+            </div>
             <div class="finalizar-box">
                 <div class="cart-product">
                     <div class="cart-picture"></div>
@@ -131,7 +144,6 @@
             <button class="btn-endereco" id="btn-endereco" onclick="showModalUserAddress()">Continuar</button>
         </div>
     </div>
-
     <!--conteúdo-->
     <main>
         <div class="content">
@@ -141,25 +153,8 @@
                     <span>Carrinho de compras</span>
                 </div>
 
-                <div class="box-product-cart">
-                    <div class="cart-product">
-                        <div class="cart-picture"></div>
-                        <div class="cart-name">Monalisa</div>
-                        <div class="cart-price">R$ 458000,00</div>
-                        <div class="cart-remove">
-                            <button class="remove-btn"></button>
-                        </div>
-                    </div>
-                    
-                    <div class="cart-product">
-                        <div class="cart-picture"></div>
-                        <div class="cart-name">Monalisa</div>
-                        <div class="cart-price">R$ 458000,00</div>
-                        <div class="cart-remove">
-                            <button class="remove-btn"></button>
-                        </div>
-                    </div>
-
+                <div class="box-product-cart" id="box-product-cart">
+                    <!--
                     <div class="cart-product">
                         <div class="cart-picture"></div>
                         <div class="cart-name">Monalisa</div>
@@ -204,21 +199,41 @@
                             <button class="remove-btn"></button>
                         </div>
                     </div>
+
+                    <div class="cart-product">
+                        <div class="cart-picture"></div>
+                        <div class="cart-name">Monalisa</div>
+                        <div class="cart-price">R$ 458000,00</div>
+                        <div class="cart-remove">
+                            <button class="remove-btn"></button>
+                        </div>
+                    </div>
+
+                    <div class="cart-product">
+                        <div class="cart-picture"></div>
+                        <div class="cart-name">Monalisa</div>
+                        <div class="cart-price">R$ 458000,00</div>
+                        <div class="cart-remove">
+                            <button class="remove-btn"></button>
+                        </div>
+                    </div>
+                -->
                 </div>
-
                 <div class="final-cart">
-                    <div class="total">R$ 85632410,00</div>
+                    <div class="total" id="total">R$ 0</div>
                     <div class="final-btn">
                         <button onclick="showModalFinalizarCompra()">Finalizar compra</button>
                     </div>
                 </div>
-            </div>
+            </div>  
 
-            <div class="products">
-                <!--produto vertical-->
+            <div class="products" id="display-products">
+                <!--
                 <div class="vertical">
                     <div class="img-text-vertical">
-                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)">
+                        </div>
                         <div class="text-general-vertical">
                             <div class="text-vertical">
                                 <div class="title-vertical" id="title">Monalisa</div>
@@ -235,11 +250,13 @@
                         </div>
                     </div>
                 </div>
-                <!--produto horizontal-->
+                
                 <div class="horizontal">
                     <div class="img-text-horizontal">
                         <div class="title-horizontal" id="title">Guernica</div>
-                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)">
+                        </div>
                         <div class="text-general-horizontal">
                             <div class="text-horizontal">
                                 <div class="inf" id="code">Código: 002</div>
@@ -257,11 +274,13 @@
                         </div>
                     </div>
                 </div>
-                <!--produto quadrado-->
+                
                 <div class="square">
                     <div class="img-text-square">
                         <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
-                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)">
+                        </div>
                         <div class="text-general-square">
                             <div class="text-square">
                                 <div class="inf" id="code">Código: 002</div>
@@ -279,10 +298,12 @@
                         </div>
                     </div>
                 </div>
-                <!--produto vertical-->
+                
                 <div class="vertical">
                     <div class="img-text-vertical">
-                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)">
+                        </div>
                         <div class="text-general-vertical">
                             <div class="text-vertical">
                                 <div class="title-vertical" id="title">Monalisa</div>
@@ -299,11 +320,13 @@
                         </div>
                     </div>
                 </div>
-                <!--produto horizontal-->
+                
                 <div class="horizontal">
                     <div class="img-text-horizontal">
                         <div class="title-horizontal" id="title">Guernica</div>
-                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)">
+                        </div>
                         <div class="text-general-horizontal">
                             <div class="text-horizontal">
                                 <div class="inf" id="code">Código: 002</div>
@@ -321,11 +344,13 @@
                         </div>
                     </div>
                 </div>
-                <!--produto quadrado-->
+                
                 <div class="square">
                     <div class="img-text-square">
                         <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
-                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="img" id="img"
+                            style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)">
+                        </div>
                         <div class="text-general-square">
                             <div class="text-square">
                                 <div class="inf" id="code">Código: 002</div>
@@ -343,6 +368,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </main>
@@ -363,4 +389,5 @@
 <script src="../../base.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="./private/user/products/script.js"></script>
+
 </html>

@@ -1,6 +1,9 @@
 const btnHome = document.getElementById("home");
 const btnAccount = document.getElementById("account");
 const btnPayment = document.getElementById("payment");
+let products = []
+let total = 0
+
 
 btnHome.addEventListener("click", (event) => {
   event.preventDefault()
@@ -50,7 +53,7 @@ arrow.addEventListener('click', () => {
 
 //fazer logout sem que possa voltar
 function cantGoBack(){
-    window.location.replace("../../../public/landingPage/index.html");
+    window.location.replace("/");
 }
 
 //criar modal quando clica na imagem
@@ -163,3 +166,180 @@ function showModalUserAddress(){
   modalEndereco.style.display = 'flex';
   modalFinalizarCompra.style.display = 'none';
 }
+
+function getAllProducts(){
+  axios.get(`http://localhost:3000/products/getall`)
+  .then(res => {
+    products = res.data;
+    documentMap(products)
+    console.log(res);
+  }).catch(err => {
+    console.error(err);
+  })
+}
+
+function documentMap(products){
+  let displayProducts = document.getElementById("display-products")
+  for(let product of products){
+    let newProduct = document.createElement("div")
+    newProduct.classList.add(product.orientation)
+    let newImgTxt = document.createElement("div")
+    newImgTxt.classList.add(`img-text-${product.orientation}`)
+    let newImg = document.createElement("div")
+    newImg.classList.add("img")
+    newImg.style.backgroundImage = `url(${product.url})`
+    let newTxtGeneral = document.createElement("div")
+    newTxtGeneral.classList.add(`text-general-${product.orientation}`)
+    let newTxt = document.createElement("div")
+    newTxt.classList.add(`text-${product.orientation}`)
+    let newTitle = document.createElement("div")
+    newTitle.classList.add(`title-${product.orientation}`)
+    newTitle.innerText = product.name
+    let newCategory = document.createElement("div")
+    newCategory.classList.add("inf")
+    newCategory.innerText = product.category
+    let newAuthor = document.createElement("div")
+    newAuthor.classList.add("inf")
+    newAuthor.innerText = `Artista: ${product.artist}`
+    let newDate = document.createElement("div")
+    newDate.classList.add("inf")
+    newDate.innerText = `Data: ${product.createdAt.split("T")[0]}`
+    let newTechnique = document.createElement("div")
+    newTechnique.classList.add("inf")
+    newTechnique.innerText = `Técnica: ${product.technique}`
+    let newDimension = document.createElement("div")
+    newDimension.classList.add("inf")
+    newDimension.innerText = `Dimensão: ${product.dimension}`
+    let newBtn = document.createElement("button")
+    newBtn.innerText = "Adicionar ao carrinho"
+    newBtn.classList.add(`${product.orientation}-cart-btn`)
+    newBtn.addEventListener("click", (event) => {
+      updateCart(product.id, "add")
+    })
+    newBtn.setAttribute("id",`add-btn-${product.id}`)
+    let newBtnPrice = document.createElement("div")
+    newBtnPrice.classList.add(`btn-price-${product.orientation}`)
+    let newPrice = document.createElement("div")
+    newPrice.classList.add(`${product.orientation}-price`)
+    newPrice.innerText = `R$ ${product.price}`
+
+    if(product.orientation == "vertical"){
+      newTxt.appendChild(newTitle)
+    }
+
+    newTxt.appendChild(newCategory)
+    newTxt.appendChild(newAuthor)
+    newTxt.appendChild(newDate)
+    newTxt.appendChild(newTechnique)
+    newTxt.appendChild(newDimension)
+
+    newTxtGeneral.appendChild(newTxt)
+    if(product.orientation == "verical"){
+      newTxtGeneral.appendChild(newBtn)
+      newTxtGeneral.appendChild(newPrice)
+    }else{
+      newBtnPrice.appendChild(newBtn)
+      newBtnPrice.appendChild(newPrice)
+      newTxtGeneral.appendChild(newBtnPrice)
+    }
+  
+
+    if(product.orientation == "vertical"){
+      newImgTxt.appendChild(newImg)
+      newImgTxt.appendChild(newTxtGeneral)
+    }else{
+      newImgTxt.appendChild(newTitle)
+      newImgTxt.appendChild(newImg) 
+      newImgTxt.appendChild(newTxtGeneral)
+    }
+
+    newProduct.appendChild(newImgTxt)
+    displayProducts.appendChild(newProduct)
+  }
+}
+
+function updateCart(id, kind){
+  switch(kind){
+    case "add":
+      handleAddCart(id)
+      break;
+    case "rmv": 
+      handleRmvCart(id)
+      break;
+  }
+}
+
+function handleAddCart(id){
+  let product = products.find((item) => {
+    return item.id == id
+  })
+  let boxProductCart = document.getElementById("box-product-cart")
+
+  let newCartProduct = document.createElement("div")
+  newCartProduct.classList.add("cart-product")
+  newCartProduct.setAttribute("id", `cart-product-${product.id}`)
+  let newCartPicture = document.createElement("div")
+  newCartPicture.classList.add("cart-picture")
+  newCartPicture.style.backgroundImage = `url(${product.url})`
+  let newCartName = document.createElement("div")
+  newCartName.classList.add("cart-name")
+  newCartName.innerText = product.name
+  let newCartPrice = document.createElement("div")
+  newCartPrice.classList.add("cart-price")
+  newCartPrice.innerText = `R$ ${product.price}`
+  let newCartRmv = document.createElement("div")
+  newCartRmv.classList.add("cart-remove")
+  let newCartRmvBtn = document.createElement("btn")
+  newCartRmvBtn.classList.add("remove-btn")
+  newCartRmv.addEventListener("click", (event) => {
+    updateCart(product.id, "rmv")
+  })
+  newCartRmv.appendChild(newCartRmvBtn)
+
+  newCartProduct.appendChild(newCartPicture)
+  newCartProduct.appendChild(newCartName)
+  newCartProduct.appendChild(newCartPrice)
+  newCartProduct.appendChild(newCartRmv)
+
+  boxProductCart.appendChild(newCartProduct)
+  
+  let addBtn = document.getElementById(`add-btn-${product.id}`)
+  addBtn.disabled = true
+
+  total += product.price
+  let totalVisual = document.getElementById("total")
+  totalVisual.innerText = `R$ ${total.toFixed(2)}`
+}
+
+function handleRmvCart(id){
+  let product = products.find((item) => {
+    return item.id == id
+  })
+
+  let boxProductCart = document.getElementById("box-product-cart")
+  let cartProduct = document.getElementById(`cart-product-${product.id}`)
+  boxProductCart.removeChild(cartProduct)
+  let addBtn = document.getElementById(`add-btn-${product.id}`)
+  addBtn.disabled = false
+
+  total -= product.price
+  let totalVisual = document.getElementById("total")
+  totalVisual.innerText = `R$ ${total.toFixed(2)}`
+}
+
+function finishPurchase(){
+  let purchase = {
+    total: total,
+    userId: keepId(),
+    liberated: false,
+  }
+  axios.post('http://localhost:3000/purchases', purchase)
+    .then(res => {
+      console.log(`Status: ${res.status}`);
+      console.log('Body: ', res.data);
+    }).catch(err => {
+      console.error(err);
+    });
+}
+
+getAllProducts()
