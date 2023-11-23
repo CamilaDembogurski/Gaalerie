@@ -169,6 +169,11 @@ main{
     background-color: var(--darkblueColor);
 }
 
+
+.btn-price-vertical{
+    display: contents;
+}
+
 .vertical-price{
     font-size: 1.5rem;
     font-weight: bold;

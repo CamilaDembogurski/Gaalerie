@@ -126,6 +126,10 @@ main{
     display: contents;
 }
 
+.btn-price-vertical{
+    display: contents;
+}
+
 .vertical-price{
     font-size: 1.5rem;
     font-weight: bold;
