@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camila Dembogurski">
+    <link rel="icon" href="../../assets/icons/icon.png">
+    <title>Login - Gaalerie</title>
+
+    <!--fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../public/login/style.css">
+</head>
+
+<body>
+    <div class="login">
+        <div class="login-content">
+            <div class="login-img">
+                <img src="../../assets/images/login.png" alt="">
+            </div>
+
+            <div class="login-forms">
+                <form action="" class="login-registre" id="login-in" name="login-in">
+                    <h1 class="login-title">Fazer Login</h1>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-user.svg" class="login-icon-user">
+                        <input type="text" placeholder="Usuário" class="login-input" id="registre-user" required>
+                    </div>
+                    <div class="error-message" id="registre-user-error"></div>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-password.svg" class="login-icon-password">
+                        <input type="password" placeholder="Senha" class="login-input" id="registre-password" required
+                            autocomplete="off">
+                        <div class="eye" id="registre-eye" onclick="eyeCLick('registre-password', 'registre-eye')">
+                        </div>
+                    </div>
+                    <div class="error-message" id="registre-password-error"></div>
+
+                    <button id="doLogin" type="button" class="login-button" onclick="()=>{}">Entrar</button> 
+
+                    <div>
+                        <span class="login-account">Não tem uma conta?</span>
+                        <span class="login-signin" id="sign-up">Cadastre-se</span>
+                    </div>
+                </form>
+
+                <form action="" class="login-create none" id="login-up" autocomplete="off">
+                    <h1 class="login-title">Criar conta</h1>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-name.png" class="login-icon-name">
+                        <input type="text" placeholder="Nome completo" class="login-input" id="create-name" required>
+                    </div>
+                    <div class="error-message" id="create-name-error"></div>
+
+                    <!--CPF(NÃO UTILIZADO)
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-cpf.png" class="login-icon-cpf">
+                        <input type="text" placeholder="CPF" class="login-input" id="create-cpf">
+                    </div>
+                    <div class="error-message" id="create-cpf-error"></div>
+                -->
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-user.svg" class="login-icon-user">
+                        <input type="text" placeholder="Usuário" class="login-input" id="create-user" required>
+                    </div>
+                    <div class="error-message" id="create-user-error"></div>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-at.png" class="login-icon-at">
+                        <input type="text" placeholder="Email" class="login-input" id="create-email" required>
+                    </div>
+                    <div class="error-message" id="create-email-error"></div>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-password.svg" class="login-icon-password">
+                        <input type="password" placeholder="Senha" class="login-input" id="create-password" required>
+                        <div class="eye" id="create-eye" onclick="eyeCLick('create-password', 'create-eye')"></div>
+                    </div>
+                    <div class="error-message" id="create-password-error"></div>
+
+                    <div class="login-box">
+                        <img src="../../assets/icons/icon-login-password.svg" class="login-icon-password">
+                        <input type="password" placeholder="Confirme sua senha" class="login-input"
+                            id="create-confirm-password" required>
+                        <div class="eye" id="create-confirm-eye"
+                            onclick="eyeCLick('create-confirm-password', 'create-confirm-eye')"></div>
+                    </div>
+                    <div class="error-message" id="create-password-confirm-error"></div>
+
+                    <button id="register" class="login-button" onclick="()=>{}">Cadastrar</button>
+
+                    <div>
+                        <span class="login-account">Já possui uma conta?</span>
+                        <span class="login-signup" id="sign-in">Entrar</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../public/login/login.js"></script>
+
+</html>

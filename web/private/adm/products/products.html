@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camila Dembogurski">
+    <link rel="icon" href="../../assets/icons/icon.png">
+    <title>Produtos - Gaalerie</title>
+
+    <!--fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./../../../base.css">
+    <link rel="stylesheet" href="./private/adm/products/style.css">
+    <link rel="stylesheet" href="../../assets/seweetalert2/sweetalert2.css">
+    <link rel="stylesheet" href="./private/adm/products/modal-actions.css">
+</head>
+<body>
+    <!--menu-->
+    <header>
+        <nav>
+            <div class="navigation-logo"><img class="logo" src="../../../assets/images/logo.png" alt=""></div>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li class="navigation"><a href="/adm" id="home">Home</a></li>
+                <li class="navigation"><a class="active-page" href="/adm-products">Produtos</a></li>
+                <li class="navigation"><a href="/adm-purchases" id="purchase">Pedidos</a></li>
+                <li class="navigation"><a href="/adm-users" id="user">Usuários</a></li>
+                <div class="dropdown">
+                    <li class="user-arrow">
+                        <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
+                        <div class="arrow" id="arrow" ></div></a>
+                    </li>
+                    <div class="dropdown-inner" id="dropdown-inner">
+                        <div class="dropdown-div">
+                            <a href="/adm-account" id="account"><img class="edit"
+                                    src="../../assets/icons/icon-edit.svg" alt="">Editar conta
+                                <div class="icon-drop-inner">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-div" onclick="cantGoBack()">
+                            <div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg"
+                                    alt=""></div>Logout
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!--modal adicionar produto-->
+    <div class="modal-add-product" id="modal-add-product">
+        <div class="add">
+            <h1>Adicionar produto</h1>
+            <form action="" id="add-product" method="post">
+                <div class="orientation">
+                    <span>Orientação da imagem: </span>
+                    <div class="radio-btns">
+                        <div>
+                            <input type="radio" name="img-orientatio" checked value="vertical" required>
+                            <span>Vertical</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="img-orientatio" value="horizontal">
+                            <span>Horizontal</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="img-orientatio" value="square">
+                            <span>Quadrada</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="need-background">
+                    <span>Nome da obra:</span>
+                    <input type="text" id="add-name" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-name"></span>
+                <div class="need-background">
+                    <span>Url da imagem:</span>
+                    <input type="url" id="add-url" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-url"></span>
+                <div class="need-background">
+                    <span>Artista:</span>
+                    <input type="text" id="add-artist" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-artist"></span>
+                <div class="need-background">
+                    <span>Técnica:</span>
+                    <input type="text" id="add-technique" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-technique"></span>
+                <div class="need-background">
+                    <span>Dimensão:</span>
+                    <input type="text" id="add-dimension" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-dimesion"></span>
+                <div class="need-background">
+                    <span>Categoria:</span>
+                    <input list="add-category-list" id="add-category" required autocomplete="off" pattern="Pintura|Escultura">
+                </div>
+                <datalist id="add-category-list">
+                    <option value="Pintura"></option>
+                    <option value="Escultura"></option>
+                </datalist>
+                <span class="add-error" id="add-error-category"></span>
+                <div class="need-background">
+                    <span>Valor:</span>
+                    <input type="number" id="add-price" required autocomplete="off">
+                </div>
+                <span class="add-error" id="add-error-price"></span>
+                <input type="submit" class="add-btn" id="add-btn" value="Adicionar">
+            </form>
+            <div class="modal-add-close-btn" id="modal-add-close-btn" onclick="closeModalAddProduct()"></div>
+        </div>
+    </div>
+    <!--modal remover produto-->
+    <div class="modal-remove-product" id="modal-remove-product">
+        <div class="remove">
+            <h1>Remover produto</h1>
+            <form action="" id="remove-product" method="delete">
+                <div class="need-background">
+                    <span>Código:</span>
+                    <input type="number" id="remove-code" required>
+                </div>
+                <span class="remove-error" id="remove-error-code"></span>
+                <input type="submit" class="remove-btn" id="remove-btn" value="Remover">
+            </form>
+            <div class="modal-remove-close-btn" id="modal-remove-close-btn" onclick="closeModalRemoveProduct()"></div>
+        </div>
+    </div>
+    <!--modal editar informações do produto-->
+    <div class="modal-edit-product" id="modal-edit-product">
+        <div class="modal-edit">
+            <h1>Editar produto</h1>
+            <form action="" id="edit-product" method="post">
+                <div class="orientation">
+                    <span>Orientação da imagem: </span>
+                    <div class="radio-btns">
+                        <div>
+                            <input type="radio" name="img-orientation" id="vertical" value="vertical">
+                            <span>Vertical</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="img-orientation" id="horizontal" value="horizontal">
+                            <span>Horizontal</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="img-orientation" id="square" value="square">
+                            <span>Quadrada</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="need-background">
+                    <span>Nome da obra:</span>
+                    <input type="text" id="edit-name" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-name"></span>
+                <div class="need-background">
+                    <span>Url da imagem:</span>
+                    <input type="url" id="edit-url" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-url"></span>
+                <div class="need-background">
+                    <span>Artista:</span>
+                    <input type="text" id="edit-artist" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-artist"></span>
+                <div class="need-background">
+                    <span>Técnica:</span>
+                    <input type="text" id="edit-technique" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-technique"></span>
+                <div class="need-background">
+                    <span>Dimensão:</span>
+                    <input type="text" id="edit-dimension" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-technique"></span>
+                <div class="need-background">
+                    <span>Categoria:</span>
+                    <input list="edit-category-list" id="edit-category" autocomplete="off" pattern="Pintura|Escultura">
+                </div>
+                <datalist id="edit-category-list">
+                    <option value="Pintura"></option>
+                    <option value="Escultura"></option>
+                </datalist>
+                <span class="edit-error" id="edit-error-category"></span>
+                <div class="need-background">
+                    <span>Valor:</span>
+                    <input type="number" id="edit-price" autocomplete="off">
+                </div>
+                <span class="edit-error" id="edit-error-price"></span>
+                <input type="submit" class="edit-btn" id="edit-btn" value="Editar">
+            </form>
+            <div class="modal-edit-close-btn" id="modal-edit-close-btn" onclick="closeModalEditProduct()"></div>
+        </div>
+    </div>
+
+    <!--conteúdo-->
+    <main>
+        <div class="btn-products-actions">
+            <button class="add-product" id="add-product" onclick="showModalAddProduct()">Adicionar produto</button>
+            <button class="remove-product" id="remove-product" onclick="showModalRemoveProduct()">Remover produto</button>
+        </div>
+        <div class="content">
+            <div class="products" id="display-products">
+            <!--
+                <div class="vertical">
+                    <div class="img-text-vertical">
+                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="text-general-vertical">
+                            <div class="text-vertical">
+                                <div class="title-vertical" id="title">Monalisa</div>
+                                <div class="inf" id="code">Código: 001</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Leonardo da Vinci</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre madeira</div>
+                                <div class="inf" id="dimension">Dimensão: 77cm x 53cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <button class="vertical-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                            <div class="vertical-price" id="price">R$ 100800,00</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="horizontal">
+                    <div class="img-text-horizontal">
+                        <div class="title-horizontal" id="title">Guernica</div>
+                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="text-general-horizontal">
+                            <div class="text-horizontal">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Pablo Picasso</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 7.76m x 3.49cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-horizontal">
+                                <button class="horizontal-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                                <div class="horizontal-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="square">
+                    <div class="img-text-square">
+                        <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
+                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="text-general-square">
+                            <div class="text-square">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Claude Monet</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 90cm x 90cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-square">
+                                <button class="square-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                                <div class="square-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vertical">
+                    <div class="img-text-vertical">
+                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="text-general-vertical">
+                            <div class="text-vertical">
+                                <div class="title-vertical" id="title">Monalisa</div>
+                                <div class="inf" id="code">Código: 001</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Leonardo da Vinci</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre madeira</div>
+                                <div class="inf" id="dimension">Dimensão: 77cm x 53cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <button class="vertical-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                            <div class="vertical-price" id="price">R$ 100800,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="horizontal">
+                    <div class="img-text-horizontal">
+                        <div class="title-horizontal" id="title">Guernica</div>
+                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="text-general-horizontal">
+                            <div class="text-horizontal">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Pablo Picasso</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 7.76m x 3.49cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-horizontal">
+                                <button class="horizontal-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                                <div class="horizontal-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="square">
+                    <div class="img-text-square">
+                        <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
+                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="text-general-square">
+                            <div class="text-square">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Pintura</div>
+                                <div class="inf" id="author">Artista: Claude Monet</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 90cm x 90cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-square">
+                                <button class="square-cart-btn" onclick="showModalEditProduct()">Editar informações</button>
+                                <div class="square-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                --> 
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-inf">
+            <img class="footer-logo" src="../../assets/icons/icon.png" alt="">
+            <p>©2023 Gaalerie</p>
+        </div>
+        <div class="social">
+            <ul class="footer-list">
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script src="../base.js"></script>
+<script src="../../assets/seweetalert2/sweetalert2.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../private/adm/products/script.js"></script>
+</html>

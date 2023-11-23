@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camila Dembogurski">
+    <link rel="icon" href="../../assets/icons/icon.png">
+    <title>Produtos - Gaalerie</title>
+
+    <!--fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./public/products/style.css">
+    <link rel="stylesheet" href="./assets/seweetalert2/sweetalert2.css">
+</head>
+<body>
+    <!--menu-->
+    <header>
+        <nav>
+            <div class="navigation-logo"><img class="logo" src="../../assets/images/logo.png" alt=""></div>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li class="navigation"><a href="/">Home</a></li>
+                <li class="navigation"><a class="active-page" href="./products.html">Produtos</a></li>
+                <li class="navigation"><a href="/login" class="need-flex"><div class="icon-unlocked"><img class="unlocked" src="../../assets/icons/icon-unlocked.svg" alt=""></div>Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!--conteúdo-->
+    <main>
+        <div class="content">
+            <div class="products" id="display-products">
+                <!--
+                <div class="vertical">
+                    <div class="img-text-vertical">
+                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="text-general-vertical">
+                            <div class="text-vertical">
+                                <div class="title-vertical" id="title">Monalisa</div>
+                                <div class="inf" id="code">Código: 001</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Leonardo da Vinci</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre madeira</div>
+                                <div class="inf" id="dimension">Dimensão: 77cm x 53cm</div>
+                                <div class="inf" id="available">True</div>
+                                
+                            </div>
+                            <button class="vertical-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                            <div class="vertical-price" id="price">R$ 100800,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="horizontal">
+                    <div class="img-text-horizontal">
+                        <div class="title-horizontal" id="title">Guernica</div>
+                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="text-general-horizontal">
+                            <div class="text-horizontal">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Pablo Picasso</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 7.76m x 3.49cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-horizontal">
+                                <button class="horizontal-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                                <div class="horizontal-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="square">
+                    <div class="img-text-square">
+                        <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
+                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="text-general-square">
+                            <div class="text-square">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Claude Monet</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 90cm x 90cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-square">
+                                <button class="square-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                                <div class="square-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vertical">
+                    <div class="img-text-vertical">
+                        <div class="img" id="img" style=" background-image: url(https://www.infoescola.com/wp-content/uploads/2010/02/monalisa.jpg)"></div>
+                        <div class="text-general-vertical">
+                            <div class="text-vertical">
+                                <div class="title-vertical" id="title">Monalisa</div>
+                                <div class="inf" id="code">Código: 001</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Leonardo da Vinci</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre madeira</div>
+                                <div class="inf" id="dimension">Dimensão: 77cm x 53cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <button class="vertical-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                            <div class="vertical-price" id="price">R$ 100800,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="horizontal">
+                    <div class="img-text-horizontal">
+                        <div class="title-horizontal" id="title">Guernica</div>
+                        <div class="img" id="img" style=" background-image: url(http://www.revistabula.com/wp/wp-content/uploads/2017/07/Guernica.jpg.webp)"></div>
+                        <div class="text-general-horizontal">
+                            <div class="text-horizontal">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Pablo Picasso</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 7.76m x 3.49cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-horizontal">
+                                <button class="horizontal-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                                <div class="horizontal-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="square">
+                    <div class="img-text-square">
+                        <div class="title-square" id="title">Nenúfares e Ponte Japonesa</div>
+                        <div class="img" id="img" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/99/Water-Lilies-and-Japanese-Bridge-%281897-1899%29-Monet.jpg)"></div>
+                        <div class="text-general-square">
+                            <div class="text-square">
+                                <div class="inf" id="code">Código: 002</div>
+                                <div class="inf" id="category">Categoria: Pintura</div>
+                                <div class="inf" id="author">Artista: Claude Monet</div>
+                                <div class="inf" id="date">Data: xx/xxx/xxxx</div>
+                                <div class="inf" id="technique">Técnica: Óleo sobre tela</div>
+                                <div class="inf" id="dimension">Dimensão: 90cm x 90cm</div>
+                                <div class="inf" id="available">True</div>
+                            </div>
+                            <div class="btn-price-square">
+                                <button class="square-cart-btn" onclick="message()">Adicionar ao carrinho</button>
+                                <div class="square-price" id="price">R$ 76000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-inf">
+            <img class="footer-logo" src="../../assets/icons/icon.png" alt="">
+            <p>©2023 Gaalerie</p>
+        </div>
+        <div class="social">
+            <ul class="footer-list">
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script src="./base.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./public/products/script.js"></script>
+<script src="./assets/seweetalert2/sweetalert2.js"></script>
+</html>

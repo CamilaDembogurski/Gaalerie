@@ -1,0 +1,221 @@
+const btnHome = document.getElementById("home");
+const btnUser = document.getElementById("user");
+const btnProducts = document.getElementById("product");
+const btnAccount = document.getElementById("account");
+
+btnHome.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToHome()
+})
+
+btnUser.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToUser()
+})
+
+btnProducts.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToProduct()
+})
+
+btnAccount.addEventListener("click", (event) => {
+  event.preventDefault()
+  redirectToAccount()
+})
+
+
+function redirectToHome(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm?id=${id}`
+  }
+}
+
+function redirectToUser(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-users?id=${id}`
+  }
+}
+
+function redirectToProduct(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-products?id=${id}`
+  }
+}
+
+function redirectToAccount(){
+  let id = keepId()
+  if(id>0){
+    window.location.href = `/adm-account?id=${id}`
+  }
+}
+
+function keepId(){
+  let id = 0
+  let strId = window.location.search.split("=")
+  if(strId.length>1){
+    id = strId[1]
+  }
+  return id
+}
+
+//mostrar e esconder dropdown
+arrow.addEventListener('click', () => {
+    arrow.classList.toggle('clicked')
+    drop.classList.toggle('drop-visible')
+    //toggle: avalia a minha classlist: se no momento da chamada ela já tiver a classe informada na função toggle ele a remove, se não ele a adiciona
+})
+
+//mostrar modal add product
+let modalAddProduct = document.getElementById('modal-add-product')
+function showModalAddProduct(){
+    modalAddProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalAddProduct(){
+    modalAddProduct.style.display = 'none'
+}
+
+//mostrar modal remove product
+let modalRemoveProduct = document.getElementById('modal-remove-product')
+function showModalRemoveProduct(){
+    modalRemoveProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalRemoveProduct(){
+    modalRemoveProduct.style.display = 'none'
+}
+
+//mostrar modal edit product
+let modalEditProduct = document.getElementById('modal-edit-product')
+function showModalEditProduct(){
+    modalEditProduct.style.display = 'flex'
+}
+//esconder 
+function closeModalEditProduct(){
+    modalEditProduct.style.display = 'none'
+}
+
+//fazer logout sem que possa voltar
+function cantGoBack(){
+    window.location.replace("/");
+}
+
+//criar modal quando clica na imagem
+divComImagemDeFundo = document.querySelectorAll(".img").forEach(function (event) {
+    event.addEventListener("click", function () {
+      //event.target pega o elemento que disparou o clique
+      event.target = document.querySelector("#img");
+
+      let image = document.createElement("img");
+      //let backgroundImage = window.getComputedStyle(event).backgroundImage;
+      let backgroundImage = event.style.backgroundImage;
+      console.log(backgroundImage);
+      let url = backgroundImage.match(/url\("?(.+?)"?\)/)[1];
+      image.src = url;
+
+      let modal = document.createElement("div");
+      let modalContent = document.createElement("div");
+      let buttonClose = document.createElement("div");
+
+      document.body.appendChild(modal);
+      modal.appendChild(modalContent);
+      modalContent.appendChild(image);
+      modalContent.appendChild(buttonClose);
+
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.background = "rgba(0, 0, 0, 0.8)";
+      modal.style.display = "flex";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.zIndex = "1";
+
+      modalContent.style.position = "relative";
+      modalContent.style.display = "flex";
+      modalContent.style.justifyContent = "center";
+      modalContent.style.alignItems = "center";
+
+      image.style.position = "relative";
+
+      //horizontal
+      if (image.naturalWidth > image.naturalHeight) {
+        if((image.naturalWidth/2) > image.naturalHeight){
+          modalContent.style.width = "100%";
+          image.style.width = "80%";
+          buttonClose.style.right = "11%";
+        }
+        else if((image.naturalWidth/1.5) > image.naturalHeight){
+          modalContent.style.width = "90%";
+          image.style.width = "80%";
+          buttonClose.style.right = "11%";
+        }
+        else{
+          image.style.height = "100%";
+          image.style.width = '90%'
+          buttonClose.style.right = "6%";
+        }
+      }
+      else if(image.naturalHeight == image.naturalWidth){
+        image.style.height = "100%";
+        image.style.width = '90%'
+        buttonClose.style.right = "6%";
+      }
+      //vertical
+      else if (image.naturalWidth < image.naturalHeight) {
+        modalContent.style.height = "90%";
+        modalContent.style.width = "max-content";
+        image.style.height = "100%";
+        buttonClose.style.right = "1%";
+      }
+
+      buttonClose.style.height = "3rem";
+      buttonClose.style.width = "3rem";
+      buttonClose.style.backgroundImage = "url(../../../assets/icons/icon-close-red.svg)";
+      buttonClose.style.backgroundSize = "cover";
+      buttonClose.style.position = "absolute";
+      buttonClose.style.top = "10px";
+      buttonClose.style.display = "flex";
+      buttonClose.style.transition = ".3s";
+      buttonClose.style.cursor = "pointer";
+
+      buttonClose.addEventListener("mouseenter", () => {
+        buttonClose.style.backgroundImage = "url(../../../assets/icons/icon-close-white.svg)";
+      });
+      buttonClose.addEventListener("mouseleave", () => {
+        buttonClose.style.backgroundImage = "url(../../../assets/icons/icon-close-red.svg)";
+      });
+
+      buttonClose.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+    });
+});
+
+
+
+confirmMessage = document.querySelectorAll(".btn").forEach(function (event) {
+  event.addEventListener("click", function () {
+    //event.target pega o elemento que disparou o clique
+    event.target = document.querySelector("#liberated-btn");
+
+      Swal.fire({
+        icon: 'success',
+        iconColor: "#7a64c9",
+        title: 'A compra 001 foi liberada para entrega!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      event.disabled = 'true';
+  });
+});
+
+
+
+

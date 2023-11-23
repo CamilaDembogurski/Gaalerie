@@ -1,0 +1,320 @@
+:root{
+    --lightColor: #ebf0f3;
+    --darkColor: #313131;
+    --darkblueColor: #2d3272;
+    --pinkColor: #ff6bb5;
+    --purpleColor: #7a64c9; 
+    --blueColor: #92b1f1;
+    --greenColor: #02c778;
+    --redColor: #FF0000;
+}
+
+/*modal adicionar adm*/
+.modal-add-adm{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.add{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    position: relative;
+    background: var(--lightColor);
+    align-self: center;
+    width: 35rem;
+    height: 25rem;
+    border-radius: 2rem;
+    padding: 3rem 2rem 4rem 2rem;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--darkColor);
+    letter-spacing: 1px;
+}
+
+.add h1{
+    align-self: center;
+    padding-bottom: 5rem;
+    letter-spacing: 3px;
+}
+
+.add form{
+    display: flex;
+    flex-direction: column;
+} 
+
+.need-background{
+    padding: .5em;
+    background-color: #fff;
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.need-background span{
+    margin-left: 0.7rem;
+}
+
+.need-background input{
+    position: absolute;
+    left: 14rem;
+    font-size: 1.3rem;
+    border: none;
+    outline: none;
+    width: 17rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.add-error{
+    font-size: .8em;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    color: var(--redColor);
+    height: 1.5rem;
+}
+
+.add-btn{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--redColor);
+    justify-self: center;
+    align-self: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.add-btn:hover{
+    background-color: #b30000;
+}
+
+.modal-add-close-btn{
+    background-image: url(../../../assets/icons/icon-close-red.svg);
+    background-size: cover;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.modal-add-close-btn:hover{
+    background-image: url(../../../assets/icons/icon-close-white.svg);
+}
+
+/*modal remover adm*/
+.modal-remove-adm{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.remove{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    position: relative;
+    background: var(--lightColor);
+    align-self: center;
+    width: 35rem;
+    height: 25rem;
+    border-radius: 2rem;
+    padding: 3rem 2rem 4rem 2rem;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--darkColor);
+    letter-spacing: 1px;
+}
+
+.remove h1{
+    align-self: center;
+    padding-bottom: 5rem;
+    letter-spacing: 3px;
+}
+
+.remove form{
+    display: flex;
+    flex-direction: column;
+} 
+
+.remove-error{
+    font-size: .8em;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    color: var(--redColor);
+    height: 1.5rem;
+}
+
+.remove-btn{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--redColor);
+    justify-self: center;
+    align-self: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.remove-btn:hover{
+    background-color: #b30000;
+}
+
+.modal-remove-close-btn{
+    background-image: url(../../../assets/icons/icon-close-red.svg);
+    background-size: cover;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.modal-remove-close-btn:hover{
+    background-image: url(../../../assets/icons/icon-close-white.svg);
+}
+
+/*modal endereço*/
+.modal-user-address{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.modal-address{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    position: relative;
+    background: var(--lightColor);
+    align-self: center;
+    width: 35rem;
+    border-radius: 2rem;
+    padding: 3rem 2rem 2rem 2rem;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--darkColor);
+    letter-spacing: 1px;
+}
+
+.modal-address h1{
+    align-self: center;
+    padding-bottom: 2rem;
+    letter-spacing: 3px;
+}
+
+.modal-address div{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.address-ok{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--purpleColor);
+    justify-self: center;
+    align-self: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.address-ok:hover{
+    background-color: var(--darkblueColor);
+}
+
+.modal-adress-close-btn{
+    background-image: url(../../../assets/icons/icon-close-red.svg);
+    background-size: cover;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.modal-address-close-btn:hover{
+    background-image: url(../../../assets/icons/icon-close-white.svg);
+}
+
+/*responsividade*/
+@media (max-width: 660px){
+    .need-background input{
+        width: 40%;
+        left: 12rem;
+        font-size: 1.1rem;
+    }
+    .remove{
+        width: 80%;
+        height: 40%;
+        font-size: 1.2rem;
+        padding: 4rem 1.5rem 3rem 1.5rem;
+    }
+    .add{
+        width: 80%;
+        height: 40%;
+        font-size: 1.2rem;
+        padding: 4rem 1.5rem 3rem 1.5rem;
+    }
+    .modal-address{
+        width: 80%;
+        font-size: 1.2rem;
+        padding: 4rem 1.5rem 4rem 1.5rem;
+    }
+    .modal-address h1{
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 499px){
+    .need-background input{
+        width: 130px;
+    }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camila Dembogurski">
+    <link rel="icon" href="../../assets/icons/icon.png">
+    <title>Pedidos - Gaalerie</title>
+
+    <!--fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./../../../base.css">
+    <link rel="stylesheet" href="./private/adm/purchases/style.css">
+    <link rel="stylesheet" href="../../../assets/seweetalert2/sweetalert2.css">
+    <link rel="stylesheet" href="./private/adm/purchases/modal-actions.css">
+</head>
+<body>
+    <!--menu-->
+    <header>
+        <nav>
+            <div class="navigation-logo"><img class="logo" src="../../assets/images/logo.png" alt=""></div>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li class="navigation"><a href="/adm" id="home">Home</a></li>
+                <li class="navigation"><a href="/adm-products" id="product">Produtos</a></li>
+                <li class="navigation"><a class="active-page" href="/admpurchases">Pedidos</a></li>
+                <li class="navigation"><a href="/adm-users" id="user">Usuários</a></li>
+                <div class="dropdown">
+                    <li class="user-arrow">
+                        <a><img class="user" src="../../assets/icons/icon-user.svg" alt="">
+                        <div class="arrow" id="arrow" ></div></a>
+                    </li>
+                    <div class="dropdown-inner" id="dropdown-inner">
+                        <div class="dropdown-div">
+                            <a href="/adm-account" id="account"><img class="edit"
+                                    src="../../assets/icons/icon-edit.svg" alt="">Editar conta
+                                <div class="icon-drop-inner">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-div" onclick="cantGoBack()">
+                            <div class="icon-drop-inner"><img class="locked" src="../../assets/icons/icon-locked.svg"
+                                    alt=""></div>Logout
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!--conteúdo-->
+    <main>
+        <div class="content">
+            <div class="table">
+                <div class="title">
+                    <div id="code" class="code">Código</div>
+                    <div id="username" class="username">Nome do usuário</div>
+                    <div id="productCode" class="code">Produtos</div>
+                    <div id="productName" class="productName">Nome dos produtos</div>
+                    <div id="total" class="total">Valor total</div>
+                    <div id="date" class="date">Data</div>
+                    <div id="liberated" class="liberated">Liberação</div>
+                </div>
+
+                <div class="purchases">
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara Dembogurski</div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara Dembogurski</div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara Dembogurski</div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">002</div>
+                        <div id="username" class="username">Camila Mayara Dembogurski</div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+
+                    <div class="purchase">
+                        <div id="code" class="code">001</div>
+                        <div id="username" class="username">Camila Mayara </div>
+                        <div id="productCode" class="code">001</div>
+                        <div id="productName" class="productName">Monalisa</div>
+                        <div id="total" class="total">R$ 826341,33</div>
+                        <div id="date" class="date">18/05/2023</div>
+                        <div id="liberated" class="liberated">
+                            <button id="liberated-btn" class="btn">Liberar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-inf">
+            <img class="footer-logo" src="../../assets/icons/icon.png" alt="">
+            <p>©2023 Gaalerie</p>
+        </div>
+        <div class="social">
+            <ul class="footer-list">
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script src="../base.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../../assets/seweetalert2/sweetalert2.js"></script>
+<script src="../private/adm/purchases/script.js"></script>
+</html>
