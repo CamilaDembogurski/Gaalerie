@@ -60,10 +60,6 @@
         <div class="modal-address">
             <h1>Endereço</h1>
             <div class="address-inf">
-                <div class="need-background" id="address-code">
-                    <span>Código:</span>
-                    <input type="number" id="code">
-                </div>
                 <div class="need-background">
                     <span>País:</span>
                     <input type="text" id="country">
@@ -92,58 +88,11 @@
                     <span>Número:</span>
                     <input type="number" id="number">
                 </div>
-                <a href="/login-payment" id="payment"><button class="btn-pagamento">Realizar pagamento</button></a>
+                <a href="/login-payment" id="payment"><button class="btn-pagamento" id="btn-pagamento">Realizar pagamento</button></a>
             </div>
         </div>
     </div>
 
-    <!--modal finalizar compra-->
-    <div class="modal-finalizar-compra" id="modal-finalizar-compra">
-        <div class="box-finalizar">
-            <h1>Finalizar compra</h1>
-            <div class="modal-finalizar-close-btn" id="modal-finalizar-close-btn" onclick="closeModalFinalizarCompra()">
-            </div>
-            <div class="finalizar-box">
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-
-                <div class="cart-product">
-                    <div class="cart-picture"></div>
-                    <div class="cart-name">Monalisa</div>
-                    <div class="cart-price">R$ 458000,00</div>
-                </div>
-            </div>
-            <div class="finalizar-total" id="finalizar-total">R$ 524863,00</div>
-            <button class="btn-endereco" id="btn-endereco" onclick="showModalUserAddress()">Continuar</button>
-        </div>
-    </div>
     <!--conteúdo-->
     <main>
         <div class="content">
@@ -222,7 +171,7 @@
                 <div class="final-cart">
                     <div class="total" id="total">R$ 0</div>
                     <div class="final-btn">
-                        <button onclick="showModalFinalizarCompra()">Finalizar compra</button>
+                        <button onclick="showModalUserAddress()">Finalizar compra</button>
                     </div>
                 </div>
             </div>  
@@ -379,9 +328,8 @@
         </div>
         <div class="social">
             <ul class="footer-list">
-                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-facebook.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
-                <li><a href=""><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
+                <li><a href="https://www.instagram.com/gaalerie.tcc/"><img class="social-icon" src="../../assets/icons/icon-instagram.svg" alt=""></a></li>
+                <li><a href="https://wa.me/5545991381530"><img class="social-icon" src="../../assets/icons/icon-whatsapp.svg" alt=""></a></li>
             </ul>
         </div>
     </footer>

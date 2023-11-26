@@ -50,6 +50,18 @@ Purchase.init(
     userId: { type: Sequelize.INTEGER, references: { model: 'Users', key: 'id' } },
   },
   { sequelize, modelName: 'Purchase' }
+
+  
+);
+
+class LinkPurchaseProduct extends Model { }
+LinkPurchaseProduct.init(
+  {
+    PurchaseId: { type: Sequelize.INTEGER, references: { model: 'Purchases', key: 'id' } },
+    ProductId: { type: Sequelize.INTEGER, references: { model: 'Products', key: 'id' } },
+  },
+  { sequelize, modelName: 'LinkPurchaseProduct' }
+  
 );
 
 const Product = sequelize.define('Product', {
@@ -62,7 +74,10 @@ const Product = sequelize.define('Product', {
   dimension: DataTypes.STRING,
   available: DataTypes.BOOLEAN,
   category: DataTypes.STRING,
+  
 });
+Purchase.belongsToMany(Product, { through: LinkPurchaseProduct });
+Product.belongsToMany(Purchase, { through: LinkPurchaseProduct });
 
 (async () => {
   try {
@@ -134,7 +149,7 @@ app.get('/products', (req, res) => {
 
 app.get('/products/getall', async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll({where: {available: true}});
     res.status(200).json(products);
   } catch (error) {
     console.error(error);
@@ -149,6 +164,16 @@ app.get('/products/:id', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao procurar produto.');
+  }
+});
+
+app.get('/users/:id', async (req, res) => {
+  try {
+    const response = await User.findOne({ where: { id: req.params.id } })
+    res.status(200).send(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao procurar usuário.');
   }
 });
 
@@ -183,6 +208,52 @@ app.put('/products/:id', async (req, res) => {
   }
 });
 
+app.get('/purchases/:id', async (req, res) => {
+  try {
+    const response = await Purchase.findOne({ where: { id: req.params.id } })
+    res.status(200).send(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao procurar compra.');
+  }
+});
+
+app.put('/purchases-liberate/:id', async (req, res) => {
+  let id = req.params.id 
+  
+  try {
+    const purchase = await Purchase.update(
+      {
+        liberated: true,
+      },{
+        where: {id: id}
+      });
+
+    res.status(200).send('Compra liberada com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao liberar compra.');
+  }
+});
+
+app.put('/products-liberate/:id', async (req, res) => {
+  let id = req.params.id 
+  
+  try {
+    const product = await Product.update(
+      {
+        available: false,
+      },{
+        where: {id: id}
+      });
+
+    res.status(200).send('Produto indisponibilizado com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao fechar produto.');
+  }
+});
+
 app.get('/adm', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, './private/adm/landingPage/index.html'));
 });
@@ -213,6 +284,20 @@ app.get('/addresses/:id', async (req, res) => {
   }
 });
 
+app.get('/purchases/getall', async (req, res) => {
+  try {
+    const purchases = await Purchase.findAll({include: [{
+      model: Product, through: {attributes: []}
+    }]});
+    
+    res.status(200).json(purchases);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao recuperar compras.');
+  }
+});
+
 app.post('/users', async (req, res) => {
   const { login, name, email, password } = req.body;
 
@@ -235,6 +320,30 @@ app.post('/users', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao criar usuário.');
+  }
+});
+
+app.post('/purchases', async (req, res) => {
+  const { total, userId, products, liberated } = req.body;
+  let resultPurchase
+  try {
+    const purchase = await Purchase.create({
+      total,
+      userId,
+      liberated,  
+    }).then((result) => {
+      resultPurchase = result
+    });
+    for(let product of products){
+      await LinkPurchaseProduct.create({
+        PurchaseId: resultPurchase.id,
+        ProductId: product
+      })
+    }
+    res.status(200).send(resultPurchase);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao criar compra.');
   }
 });
 
@@ -335,13 +444,65 @@ app.delete('/admproducts/:id', async (req, res) => {
   }
 })
 
-app.get('/users/findall', async (req, res) => {
+app.post('/add-address', async (req, res) => {
+  const { country, state, city, neighborhood, street, description, number, userId } = req.body;
+  try {
+    let newAddressId
+    const address = await Address.create({
+      country,
+      state,
+      city,
+      neighborhood,
+      street,
+      description,
+      number
+    }).then((result) => {
+      newAddressId = result.id
+    });
+    await User.update({
+      addressId: newAddressId
+    }, {where: {
+      id: userId,
+    }})
+    console.log(address.toJSON());
+    res.status(200).send('Endereço criado com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao criar endereço.');
+  }
+});
+
+app.get('/adm-users/findall', async (req, res) => {
   try {
     const users = await User.findAll();
+    console.log(users)
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar usuários.');
+  }
+});
+
+app.put('/edit-address/:id', async (req, res) => {
+  let id = req.params.id
+  const { country, state, city, neighborhood, street, description, number } = req.body;
+  try {
+    const address = await Address.update({
+      country,
+      state,
+      city,
+      neighborhood,
+      street,
+      description,
+      number
+    },{
+        where: {id: id}
+    });
+
+    res.status(200).send('Endereço editado com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao editar endereço.');
   }
 });
 

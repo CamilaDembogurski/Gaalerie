@@ -132,6 +132,7 @@ addBtn.addEventListener('click', (event) => {
   let price = document.getElementById('add-price').value
 
   createProduct(name, url, artist, technique, orientation, dimension, category, price)
+  location.reload()
 })
 
 //função para requisitar a criação do produto no express
@@ -163,6 +164,7 @@ rmvBtn.addEventListener('click', (event) => {
   event.preventDefault()
   let rmvId = document.getElementById('remove-code').value
   deleteProduct(rmvId)
+  location.reload()
 })
 
 

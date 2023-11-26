@@ -29,13 +29,11 @@ signIn.addEventListener('click', () => {
 doLogin.addEventListener('click', async (event) => {
     const login = document.getElementById('registre-user').value;
     const password = document.getElementById('registre-password').value;
-    console.log(login, password)
     try {
         const response = await axios.post('http://localhost:3000/logar', { login, password });
         console.log(response)
-        // Verificar se a propriedade 'data' está definida antes de acessá-la
         if (response.data) {
-            console.log(response.data.message); // Deve imprimir "Login bem sucedido!"
+            console.log(response.data.message); 
             if(response.data.adm){
                 window.location.href = `/adm?id=${response.data.id}`;
             }else{
@@ -45,12 +43,13 @@ doLogin.addEventListener('click', async (event) => {
             console.error('Resposta inválida do servidor:', response);
         }
     } catch (error) {
-        console.error('Erro ao fazer login:', error.response.data.error);
+        console.error('Erro ao efetuar login:', error.response.data.error);
     }
 });
 
 //Botão register
 register.addEventListener('click', (event) => {
+    event.preventDefault()
     let password_create = document.getElementById("create-password")
     let password_confirm = document.getElementById("create-confirm-password")
     let email = document.getElementById("create-email")
@@ -152,6 +151,7 @@ function doRegister(name, username, email, password) {
 
     axios.post('http://localhost:3000/users', user)
         .then(res => {
+            window.location.reload()
             console.log(`Status: ${res.status}`);
             console.log('Body: ', res.data);
         }).catch(err => {

@@ -214,9 +214,10 @@ function usersMap(users){
 }
 
 function getAllUsers(){
-  axios.get(`http://localhost:3000/users/findall`)
+  axios.get(`http://localhost:3000/adm-users/findall`)
   .then(res => {
     let users = res.data;
+    console.log(users)
     usersMap(users)
     console.log(res);
   }).catch(err => {

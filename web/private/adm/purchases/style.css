@@ -139,5 +139,5 @@ main{
 }
 
 .btn:disabled{
-    background-color: var(--darkColor);
+    background-color: var(--darkColor) !important;
 }

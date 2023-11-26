@@ -11,6 +11,7 @@
     --redColor: #FF0000;
 }
 
+
 /*animação*/
 @keyframes ring {
     0%{
@@ -99,6 +100,27 @@ main{
 }
 
 .total-animate .total{
+    align-self: center;
+    justify-self: center;
+}
+.content .protocol-animate{
+    font-size: 2rem;
+    font-weight: 900;
+    width: 21rem;
+    height: 4rem;
+    display: grid;
+}
+
+.protocol-animate .protocol-ring{
+    width: 20rem;
+    height: 3rem;
+    border-radius: 2rem;
+    padding: .5rem;
+    position: absolute;
+    animation: ring 2s linear infinite;
+}
+
+.protocol-animate .protocol{
     align-self: center;
     justify-self: center;
 }

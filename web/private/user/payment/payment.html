@@ -21,6 +21,13 @@
     </header>
     <main>
         <div class="content">
+            <h1>Protocolo (ANOTE!)</h1>
+            <div class="protocol-animate">
+                <div class="protocol-ring"></div>
+                <div class="protocol" id="protocol">
+                    1
+                </div>
+            </div>
             <h1>Pagamento</h1>
             <div class="total-animate">
                 <div class="total-ring"></div>
@@ -31,11 +38,13 @@
             <div class="qr-code">
                 <img src="../../assets/images/QRcode.jpg" alt="">
             </div>
-            <button class="comprovante">Enviar comprovante</button>
+            <button class="comprovante"><a href="https://wa.me/5545991381530">Enviar comprovante</a></button>
         </div>
         <div class="money">
             <img src="../../assets/icons/icon-money.svg" alt="">
         </div>
     </main>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./private/user/payment/script.js"></script>
 </html>
